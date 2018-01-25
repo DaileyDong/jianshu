@@ -1,22 +1,40 @@
+*{
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+    background-color: #fff;
+    color: #333;
+}
+#__nuxt{
+    height: 100%;
+}
+#sign-template{
+    height:100%;
+    background:#f1f1f1;
+}
+#default-template{
+    height: 100%;
+    background:#fff;
+}
 a,a:hover,a:focus{
-    text-decoration: none !important;
-    color: inherit !important;
+    text-decoration: none!important;
+    color: inherit!important;
 }
-h1,h2,h3,h4,h5,h6{
-    font-size: 14px;
-    margin: 0 ;
-    padding: 0;
-}
-
 input:focus{
-    outline: none;
+    outline: none; /*去除input蓝色边框*/
 }
 h1,h2,h3,h4,h5,h6{
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 ul,li,ol,dl{
-   margin: 0;
-   padding: 0;
-   list-style: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
+/* img{
+    max-width: 100%;
+    display: block;
+} */

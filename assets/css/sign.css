@@ -1,20 +1,9 @@
 
-
-html,
-body {
-    height: 100%;
-    background-color: #f1f1f1 !important;
-}
-
 .sign {
-    /* 先写盒子模型 然后文本 定位放上面 */
     height: 100%;
     font-size: 14px;
     text-align: center;
 }
-
-
-/* logo */
 
 .logo {
     position: absolute;
@@ -26,16 +15,14 @@ body {
     width: 100px;
 }
 
-
-/* 登录盒子 */
-
 .main {
     width: 400px;
-    margin: 60px auto 0;
+    margin: 150px auto 0;
+    padding: 50px 50px 30px;
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 0 8px rgba(0, 0, 0, .1);
-    padding: 50px 50px 30px;
+    display: inline-block;
 }
 
 .main .title {
@@ -56,16 +43,13 @@ body {
 
 .main .title h4 a.active {
     font-weight: 700;
-    color: #ea6f5a !important;
+    color: #ea6f5a!important;
     border-bottom: 2px solid #ea6f5a;
 }
 
 .main .title h4 a:hover {
     border-bottom: 2px solid #ea6f5a;
 }
-
-
-/* form */
 
 .main form {
     margin: 0 0 30px;
@@ -75,6 +59,7 @@ body {
 .main form .input-prepend {
     position: relative;
     width: 100%;
+
 }
 
 .main form .input-prepend input {
@@ -83,13 +68,15 @@ body {
     padding: 4px 12px 4px 35px;
     border: 1px solid #c8c8c8;
     border-bottom: none;
-    background-color: rgb(248, 248, 248)
+    background-color: rgba(248, 248, 248);
 }
-.main .top-radius{
-   border-radius: 4px 4px 0 0;
+
+.main form input.top-radius {
+    border-radius: 4px 4px 0 0;
 }
-.main form input.bottom-radius{
-    border-radius:0 0 4px 4px;
+
+.main form input.bottom-radius {
+    border-radius: 0 0 4px 4px;
     border-bottom: 1px solid #c8c8c8;
 }
 
@@ -110,15 +97,19 @@ body {
     float: right;
     margin: 25px 0;
 }
-.main form .help a:hover{
-    color: #000!important;
+
+.main form .help:hover {
+    color: black;
 }
+
 .main form>input {
-    border-radius: 20px;
     width: 100%;
-    height: 45px;
     display: block;
+    height: 45px;
+    border-radius: 25px;
 }
+
+/* 社交账号登录 */
 
 .main .more-sign p {
     position: relative;
@@ -127,101 +118,107 @@ body {
     margin-bottom: 20px;
 }
 
+/* 左边的线 */
+
 .main .more-sign p:before {
     content: "";
     width: 60px;
+    border-bottom: 1px solid #b8b8b8;
     position: absolute;
     top: 10px;
     left: 30px;
-    border-bottom: 1px solid #b8b8b8;
 }
+
+/* 右边的线 */
 
 .main .more-sign p:after {
     content: "";
     width: 60px;
+    border-bottom: 1px solid #b8b8b8;
     position: absolute;
     top: 10px;
     right: 30px;
-    border-bottom: 1px solid #b8b8b8;
 }
 
 .main .more-sign ul {
-    color: #fff;
     margin-bottom: 20px;
 }
 
 .main .more-sign ul li {
-    border-radius: 50%;
-    margin: 0 5px;
     display: inline-block;
+    border-radius: 50%;
+    color: white;
+    margin: 0 5px;
 }
 
 .main .more-sign ul li.weibo {
-    background-color: #e05244;
+    background: #e05244;
 }
 
-.main .more-sign ul li.weixin{
-    background-color: #00bb29;
-}
-.main .more-sign ul li.qq{
-    background-color: #498ad5;
+.main .more-sign ul li.weixin {
+    background: #00bb29;
 }
 
-.main .more-sign ul li.other{
-    background-color: hsla(0, 0%, 71%, .2);
+.main .more-sign ul li.qq {
+    background: #498ad5;
 }
 
 .main .more-sign ul li a {
-    display: block;
     width: 50px;
     height: 50px;
-    line-height: 50px;
-    border-radius: 50%;
+    display: block;
+    line-height: 53px;
 }
 
-.main .more-sign ul .other {
-    color: #787878;
+.main .more-sign ul li.other {
+    color: #939393;
+    background: #eee;
 }
 
 .main .more-sign ul li a i {
-    font-size: 20px;
+    font-size: 25px;
 }
-.main form input.sign-up-btn{
+
+.main form input.sign-up-btn {
     margin-top: 20px;
 }
-.main form p.sign-up-msg{
-    margin:15px 0;
+
+.main form p.sign-up-msg {
+    margin: 15px 0;
     text-align: center;
     font-size: 12px;
     line-height: 20px;
+    color: #969696;
 }
-.main form .ssm{
+
+.main form .ssm {
     position: relative;
+    line-height: 36px;
+    /* 隐藏验证码输入框 */
+    display: none;
 }
-.main form .input-prepend a.send-ssm{
+
+.main form .input-prepend a.send-ssm {
     position: absolute;
-    top: 10px;
+    top: 7px;
     right: 10px;
     width: 100px;
     height: 36px;
+    display: block;
     font-size: 13px;
-    line-height: 18px;
-    color: #fff!important;
-    opacity: .5;
     border-radius: 20px;
-    background-color:#42c02e;
-
+    opacity: 0.7;
+    color: white!important;
 }
 @media (max-width:768px) {
     .logo {
         display: none;
     }
-    html,
-    body {
-        background: #fff!important;
+    #sign-template {
+        background-color: #fff;
     }
     .main {
-        margin: 0 auto;
         box-shadow: none;
+        margin: 0 auto;
     }
 }

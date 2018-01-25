@@ -1,5 +1,5 @@
 <template>
-    <div style="height:100%">
+    <div id="sign-template">
         <nuxt/>
     </div>
   </template>
@@ -11,8 +11,9 @@
   import 'bootstrap/dist/css/bootstrap.css'
   import 'bootstrap-vue/dist/bootstrap-vue.css'
   export default {
-   
   
   }
   </script>
+
+ 
   

@@ -54,7 +54,7 @@
 
 <!-- 组件的模型 -->
 <script>
-    import 'assets/css/sign.css'
+   import '~/assets/css/sign.css'
     export default {
         layout: 'sign', //指明当前页面所使用的默认模板是layouts文件夹下的sign.vue
         head() {
@@ -69,6 +69,4 @@
     }
 </script>
 
-<!-- 组件的样式 -->
-<style>
-</style>
+
