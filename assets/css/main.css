@@ -1,40 +1,91 @@
-*{
-    box-sizing: border-box;
+/******************公共样式******************/
+* {
+    box-sizing:border-box;
 }
-html,
-body {
-    height: 100%;
-    background-color: #fff;
-    color: #333;
+html,body {
+    height:100%;
+    background:#fff;
+    color:#333;
 }
-#__nuxt{
-    height: 100%;
+#__nuxt {
+    height:100%;
 }
-#sign-template{
+#sign-template {
     height:100%;
     background:#f1f1f1;
 }
-#default-template{
-    height: 100%;
-    background:#fff;
+#default-template {
+    height:100%;
+    padding-top:56px;
+    background:#ffff;
 }
-a,a:hover,a:focus{
+a,a:hover,a:focus {
     text-decoration: none!important;
-    color: inherit!important;
+    color:inherit!important;
 }
-input:focus{
-    outline: none; /*去除input蓝色边框*/
+input:focus {
+    outline:none;
 }
-h1,h2,h3,h4,h5,h6{
-    margin: 0;
-    padding: 0;
+h1,h2,h3,h4,h5,h6 {
+    margin:0;
+    padding:0;
 }
-ul,li,ol,dl{
-    list-style: none;
-    margin: 0;
-    padding: 0;
+ul,ol,dl {
+    list-style:none;
+    margin:0!important;
+    padding:0!important;
 }
-/* img{
-    max-width: 100%;
+.my-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px
+}
+.btn:focus, .btn.focus {
+    box-shadow: none!important;
+}
+@media (min-width: 992px){
+    .my-container {
+        width: 960px!important;
+    }
+}
+@media (max-width: 1080px){
+    .my-container {
+        width: 750px!important;
+    }
+}
+
+/*********************首页布局**********************/
+.index{
+    padding-top: 30px;
+}
+.index .main{
+   padding-right: 0;
+}
+.index .aside{
+   padding:0 0 0 4.16667%;
+}
+
+.index .main .banner a{
     display: block;
-} */
+}
+.index .main .banner a img{
+    width: 100%;
+}
+.index .aside .board{
+    margin-top: -4px;
+    padding-bottom: 4px;
+}
+.index .aside .board a{
+    display: block;
+}
+.index .aside .board img{
+    margin-bottom:6px;
+    width: 100%;
+}
+
+/***********************文章页面布局****************/
+
+
+
+/************************用户页面*******************/
