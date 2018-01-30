@@ -204,7 +204,13 @@ ul,ol,dl {
     border: 1px solid #ea6f5a;
     padding: 3px 6px;
     border-radius: 4px;
+    vertical-align: middle;
     margin-right: 10px;
+    display: inline-block;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
 }
 .note-list .meta .collection-tag:hover{
@@ -221,6 +227,129 @@ ul,ol,dl {
 .note-list .meta span{
     color: #b4b4b4;
 }
+.index .main .load-more{
+    display: block;
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    color: #fff!important;
+    background-color: #a5a5a5;
+    text-align: center;
+    font-size: 15px;
+    line-height: 40px;
+    margin: 30px auto 60px;
+}
+.recommend-author{
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+.recommend-author .title{
+     text-align: left;
+     color: #969696;
+     
+}
+.recommend-author .title .page-change{
+  float: right;
+}
+.recommend-author .title .page-change i{
+    transition: all ease-in .3s;
+}
+.recommend-author .list{
+    margin-bottom: 20px;
+    text-align:left;
+}
+.recommend-author .list li{
+    margin-top: 15px;
+}
+.recommend-author .list li .avatar{
+    float: left;
+    height: 48px;
+    width: 48px;
+    margin-right: 10px;
+}
+.recommend-author .list li .follow{
+    float: right;
+    font-size: 13px;
+    padding-top: 5px;
+    color: #42c02e!important;
+}
+.recommend-author .list li .name{
+    padding-top: 5px;
+    display:block;
+    margin-right: 60px;
+}
+.recommend-author .list li p{
+    color: #969696;
+     font-size: 12px;
+}
+.recommend-author .find-more{
+    width: 100%;
+    padding: 7px 7px 7px 12px;
+    display: block;
+    color: #787878!important;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    font-size: 13px;
+}
+.recommend-author .find-more i{
+    font-size: 13px;
+    margin-left: 5px;
+}
+.aside .download{
+    position: relative;
+    font-size: 14px;
+    height: 80px;
+    width: 100%;
+    padding: 10px 22px;
+    margin-bottom: 30px;
+    display: block;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #f0f0f0;
+}
+.aside .download .qrcode{
+    height: 60px;
+    width: 60px;
+    margin-right: 17px;
+}
+.aside .suspend{
+    position: absolute;
+    top:81px;
+    left:85px;
+    height: 200px;
+    width: 200px;
+}
+.aside .suspend .popover{
+    position: absolute;
+    left:10px;
+    top: 5px;
+    border: 1px solid gray;
+    height: 180px;
+    width:180px;
+}
+.aside .suspend .san{
+    position: absolute;
+    height: 20px;
+    left: 90px;
+    width: 20px;
+    bottom:5px;
+    z-index:10000;
+    background-color: #fff;
+    transform: rotate(45deg);
+    border: 1px solid gray;
+    border-top: none;
+    border-left: none;
+}
+.aside .suspend .me{
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    height: 160px;
+    width: 160px;
+    z-index: 10000;
+}
 @media (max-width:1080px){
     .note-list li.have-img .wrap-img{
         margin-top: -58px;
@@ -231,9 +360,92 @@ ul,ol,dl {
     .note-list li.have-img>div{
         padding-right: 135px;
     }
+    .aside .suspend{
+        top:26px;
+        left:40px;
+    }
+    
+}
+/********************底部****************************/
+footer{
+  margin-bottom: 20px;
+}
+footer .about::after{
+  clear: both;
+  display: block;
+  height: 0;
+  content: '';
+  visibility: hidden;
+}
+footer .about{
+    zoom: 1;
+}
+footer .about li{
+    float: left;
+    margin-right: 25px;
+}
+footer .about li a{
+    font-size: 13px;
+    color: #969696!important;
 }
 /***********************文章页面布局****************/
-
-
+.note{
+    position: relative;
+    padding-top: 10px;
+}
+.note .post{
+    width: 620px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+.note .post .article .title{
+    font-size: 34px;
+    font-weight: 700;
+    margin: 20px 0 0;
+    word-break: break-all;
+}
+.note .post .article .author{
+    margin: 30px 0 40px 0;
+}
+.note .post .article .author .avatar{
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+.note .post .article .author .info{
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.note .post .article .author .info .name{
+    font-size: 16px;
+    margin-right: 5px;
+}
+.note .post .article .author .info .follow{
+    color: #fff!important;
+    background-color: #42c02e!important;
+    font-size: 12px;
+    border-radius: 40px;
+    padding: 1px 7px 1px 5px;
+}
+.note .post .article .author .info .meta{
+    margin-top: 5px;
+    font-size: 12px;
+    color: #969696;
+}
+.note .post .article .author .info .meta span{
+    margin-right: 5px;
+}
+.followed{
+    color: #8c8c8c!important;
+    background:none;
+    font-size: 12px!important;
+    border-radius: 40px!important;
+    padding: 1px 7px 1px 5px!important;
+    border: 1px solid hsla(0,0%,59%,.6);
+}
 
 /************************用户页面*******************/

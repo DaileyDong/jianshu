@@ -167,6 +167,14 @@
                                             </li>
                             </ul>
                         </div>
+                        <!--阅读更多-->
+                        <nuxt-link to="/" class="load-more">阅读更多</nuxt-link>   
+                 <!--底部-->
+                  <footer>
+                     <ul class="about">
+                      <li v-for="(a,index) in abouts" :key="index"><nuxt-link to="">{{a.name}}</nuxt-link></li>
+                    </ul>
+                  </footer>
                     </div>
                 <div class="col-4 aside">
                     <div class="board">
@@ -186,64 +194,166 @@
                             <img src="../assets/img/5.png" alt="">
                         </nuxt-link>
                     </div>
+                    <!--下载-->     
+                    <a href="javascript:void(0)" class="download" @mouseover="downMe" @mouseout="downOut">
+                      <img src="../assets/img/about.png" alt="" class="qrcode">
+                       <span>关于作者 <i class="fa fa-angle-right"></i></span>
+                    </a>
+                    <div class="suspend" v-show="downObj">
+                    <div class="popover"></div>
+                    <img src="../assets/img/me.png" alt="" class="me">
+                    <div class="san"></div>
+                    </div>
+                    <!--推荐作者-->
+                    <div class="recommend-author">
+                        <div class="title">
+                            <span>推荐作者</span>
+                            <a class="page-change" href="javascript:void(0)" @click="rotate">
+                                <i class="fa fa-refresh" ref="refresh"></i>
+                                换一批
+                            </a>
+                        </div>
+                        <ul class="list">
+                            <li>
+                                <nuxt-link to="" class="avatar">
+                                    <img src="../assets/img/user.jpg" alt="">
+                                </nuxt-link>
+                                <nuxt-link to="" class="follow">
+                                  <i class="fa fa-plus-square-o"></i>
+                                    关注
+                                </nuxt-link>
+                                   <nuxt-link class="name" to="">简宝玉</nuxt-link>
+                                <p>写了70.6k字 · 10.9k喜欢</p>
+                            </li>
+                              <li>
+                                <nuxt-link to="" class="avatar">
+                                    <img src="../assets/img/user.jpg" alt="">
+                                </nuxt-link>
+                                <nuxt-link to="" class="follow">
+                                  <i class="fa fa-plus-square-o"></i>
+                                    关注
+                                </nuxt-link>
+                                   <nuxt-link class="name" to="">简宝玉</nuxt-link>
+                                <p>写了70.6k字 · 10.9k喜欢</p>
+                            </li>
+                              <li>
+                                <nuxt-link to="" class="avatar">
+                                    <img src="../assets/img/user.jpg" alt="">
+                                </nuxt-link>
+                                <nuxt-link to="" class="follow">
+                                  <i class="fa fa-plus-square-o"></i>
+                                    关注
+                                </nuxt-link>
+                                   <nuxt-link class="name" to="">简宝玉</nuxt-link>
+                                <p>写了70.6k字 · 10.9k喜欢</p>
+                            </li>
+                              <li>
+                                <nuxt-link to="" class="avatar">
+                                    <img src="../assets/img/user.jpg" alt="">
+                                </nuxt-link>
+                                <nuxt-link to="" class="follow">
+                                  <i class="fa fa-plus-square-o"></i>
+                                    关注
+                                </nuxt-link>
+                                   <nuxt-link class="name" to="">简宝玉</nuxt-link>
+                                <p>写了70.6k字 · 10.9k喜欢</p>
+                            </li>
+                              <li>
+                                <nuxt-link to="" class="avatar">
+                                    <img src="../assets/img/user.jpg" alt="">
+                                </nuxt-link>
+                                <nuxt-link to="" class="follow">
+                                  <i class="fa fa-plus-square-o"></i>
+                                    关注
+                                </nuxt-link>
+                                   <nuxt-link class="name" to="">简宝玉</nuxt-link>
+                                <p>写了70.6k字 · 10.9k喜欢</p>
+                            </li>
+                        </ul>
+                        <a href="javascript:void(0)" class="find-more">
+                             查看全部 <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
+        
+        
         </div>
+        
     </div>
 </template>
 
 <!-- 组件的模型 -->
 <script>
-    import MyHeader from "~/components/MyHeader";
-    import $ from "jquery";
-    export default {
-        // 组件的名称
-        name: "Index",
-        data() {
-            return {
-                banners: [
-                    '/banner1.jpg',
-                    '/banner2.jpg',
-                    '/banner3.jpg',
-                    '/banner4.jpg',
-                    '/banner5.jpg',
-                    '/banner6.jpg'
-                ],
-                swiperOption: {
-                    loop: true,
-                    slidesPerView: 'auto',
-                    centeredSlides: true,
-                    spaceBetween: 30,
-                    //disableOnInteraction,如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay
-                    autoplay: {
-                        delay: 3000,
-                        disableOnInteraction: false
-                    },
-                    //设置为true时，鼠标覆盖Swiper时指针会变成手掌形状，拖动时指针会变成抓手形状
-                    grabCursor: true,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        //此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
-                        clickable: true,
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                }
-            };
+import MyHeader from "~/components/MyHeader";
+import $ from "jquery";
+export default {
+  // 组件的名称
+  name: "Index",
+  data() {
+    return {
+     downObj:false,
+      banners: [
+        "/banner1.jpg",
+        "/banner2.jpg",
+        "/banner3.jpg",
+        "/banner4.jpg",
+        "/banner5.jpg",
+        "/banner6.jpg"
+      ],
+      abouts: [
+        { name: "姓名：董邦军" },
+        { name: "联系方式：13203878630" },
+        { name: "GitHub账号: www.github.com/daileydong" }
+      ],
+      swiperOption: {
+        loop: true,
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: 30,
+        //disableOnInteraction,如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false
         },
-        components: {
-            MyHeader
+        //设置为true时，鼠标覆盖Swiper时指针会变成手掌形状，拖动时指针会变成抓手形状
+        grabCursor: true,
+        pagination: {
+          el: ".swiper-pagination",
+          //此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+          clickable: true
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
         }
+      },
+      deg: 360
     };
+  },
+  components: {
+    MyHeader
+  },
+  methods: {
+    rotate() {
+      this.$refs.refresh.style.transform = `rotate(${this.deg}deg)`;
+      this.deg = this.deg + 360;
+    },
+    downMe(){
+      this.downObj=true;
+    },
+    downOut(){
+      this.downObj=false;
+    }
+  }
+};
 </script>
 
 <!-- 组件的样式 -->
 <style>
-    .swiper-button-prev,
-    .swiper-button-next {
-        background-color: rgba(0, 0, 0, .4) !important;
-        border-radius: 4px;
-    }
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  border-radius: 4px;
+}
 </style>
