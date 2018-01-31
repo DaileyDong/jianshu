@@ -114,6 +114,8 @@ export default {
         top: 0;
         left: 0;
         z-index: 999;
+        /*解决fixed抖动问题*/
+        -webkit-transform: translateZ(0);
      }
     nav .width-limit{
         min-width:768px;
@@ -288,7 +290,7 @@ export default {
          background: #fff;
      }
     nav .nav-list .search form{
-        margin-top: 8px;
+        margin-top: 10px;
         position: relative;
     }
     nav .nav-list .search form a.search-btn{

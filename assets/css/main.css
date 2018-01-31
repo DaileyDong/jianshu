@@ -419,17 +419,22 @@ footer .about li a{
     display: inline-block;
     margin-left: 10px;
     vertical-align: middle;
+    color: #8c8c8c;
 }
 .note .post .article .author .info .name{
     font-size: 16px;
     margin-right: 5px;
+    color: #000;
 }
-.note .post .article .author .info .follow{
+.note .post .info .follow{
     color: #fff!important;
     background-color: #42c02e!important;
     font-size: 12px;
     border-radius: 40px;
-    padding: 1px 7px 1px 5px;
+    padding: 2px 7px 2px 5px;
+}
+.note .post .info .follow i{
+    margin-right: 5px;
 }
 .note .post .article .author .info .meta{
     margin-top: 5px;
@@ -441,11 +446,245 @@ footer .about li a{
 }
 .followed{
     color: #8c8c8c!important;
-    background:none;
+    background:none!important;
     font-size: 12px!important;
     border-radius: 40px!important;
     padding: 1px 7px 1px 5px!important;
-    border: 1px solid hsla(0,0%,59%,.6);
+    border: 1px solid hsla(0,0%,59%,.6)!important;
 }
-
+.note .post .article .show-content{
+    color: #2f2f2f;
+    word-break: break-word!important;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+}
+.note .post .article .show-content h1{
+    font-size: 26px;
+}
+.note .post .show-foot{
+  margin-bottom: 30px;
+}
+.note .post .show-foot .notebook{
+  color: #c8c8c8!important;
+  font-size: 12px;
+}
+.note .post .show-foot .notebook i{
+    margin-right: 5px;
+}
+.note .post .show-foot .copyright{
+ float: right;
+ margin-top: 5px;
+ font-size: 12px;
+ color: #c8c8c8;
+}
+.note .post .follow-detail{
+    padding: 20px;
+    background-color:#f8f8f8;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    font-size: 12px;
+}
+.note .post .follow-detail .info{
+    color: #8c8c8c;
+}
+.note .post .follow-detail .info .avatar{
+    width: 48px;
+    height: 48px;
+    float: left;
+    margin-right: 10px;
+}
+.note .post .follow-detail .info a.title{
+    color: #000!important;
+}
+.note .post .follow-detail .info .followb{
+      border-radius: 40px;
+      float: right;
+      padding:8px 18px!important;
+      border: none;
+}
+.note .post .follow-detail .info .followb i{
+    margin-right: 5px;
+}
+.note .post .follow-detail .info .title{
+    margin-right: 3px;
+    font-size: 17px;
+    line-height: 1.8;
+    vertical-align: middle;
+}
+.note .post .follow-detail .info p{
+    margin: 0;
+    padding: 0;
+    color: #969696;
+}
+.note .post .follow-detail .info .ic-man{
+    color: #3194d0;
+    font-size: 15px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.note .post .follow-detail .signature{
+    border-top: 1px solid #e1e1e1;
+    overflow: hidden;
+    padding-top: 20px;
+    margin-top: 20px;
+    color: #969696;
+}
+.note .post .meta-bottom{
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+.note .post .meta-bottom .like{
+  display: inline-block;
+}
+.note .post .meta-bottom .share-group{
+ float:  right;
+}
+.note .post .meta-bottom .like-group{
+ border: 1px solid #ea6f5a;
+ border-radius: 40px;
+ padding: 13px 0 15px;
+}
+.note .post .meta-bottom .like-group:hover{
+    background-color: #fef7f6;
+    cursor: pointer;
+}
+.note .post .meta-bottom  .btn-like{
+    font-size: 19px;
+    display: inline-block;
+}
+.note .post .meta-bottom  .modal-wrap{
+    display: inline-block;
+    font-size: 18px;
+    border-left: 1px solid rgba(236,97,73,.4);
+}
+.note .post .meta-bottom  .btn-like .fontLike{
+    color: #ea6f5a!important;
+    padding: 18px 15px 18px 30px;
+}
+.note .post .meta-bottom  .btn-like i{
+    margin-right: 5px;
+    font-size: 21px;
+}
+.note .post .meta-bottom .fontNum{
+    color: #ea6f5a!important;
+    padding: 18px 30px 18px 17px;
+}
+.note .post .meta-bottom .share-group a{
+   width: 50px;
+   height: 50px;
+   line-height: 50px;
+   border-radius: 50%;
+   display: inline-block;
+   border: 1px solid #dcdcdc;
+   margin-left: 5px;
+   text-align: center;
+   vertical-align: middle;
+}
+.note .post .meta-bottom .share-group i{
+    font-size: 24px;
+}
+.note .post .meta-bottom .share-group .weixin{
+    color:#00bb29;
+}
+.note .post .meta-bottom .share-group .weibo{
+    color:#e05244;
+}
+.note .post .meta-bottom .share-group .qq{
+    color: #9b9b9b;
+}
+.note .post .meta-bottom .share-group .more-share{
+    border: 1px solid #dcdcdc;
+    margin-left: 5px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: #9b9b9b;
+    padding: 13px;
+    cursor: pointer;
+}
+.likeActive{
+    background-color: #ea6f5a;
+    color: #fff;
+    border-radius: 40px!important;
+    padding: 13px 0 15px!important;
+}
+.fontWhite{
+    color: #fff!important;
+    padding: 18px 15px 18px 30px;
+}
+.numWhite{
+    color: #fff!important;
+    padding: 18px 30px 18px 17px;
+}
+.modeWhite{
+    border-left: 1px solid #fff;
+    display: inline-block;
+    font-size: 18px;
+}
+.note .post .meta-bottom .share-group .motai{
+    position: relative;
+    top:-209px;
+    left: 140px;
+    height: 160px;
+    width: 150px;
+}
+.note .post .meta-bottom .share-group .motai .content{
+    position: absolute;
+    top:0;
+    left: 5px;
+    height: 150px;
+    width: 140px;
+    border: 1px solid #b5b5b5;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 0 6px 2px #b5b5b5;
+}
+.note .post .meta-bottom .share-group .motai .content ul{
+   font-size: 12px;
+}
+.note .post .meta-bottom .share-group .motai .content ul li{
+  position: relative;
+  z-index: 3;
+  height: 29.5px;
+  line-height: 29.5px;
+  background-color: #fff;
+}
+.note .post .meta-bottom .share-group .motai .content ul li:hover{
+    background-color: #f0f0f0;
+}
+.note .post .meta-bottom .share-group .motai .content ul li i{
+ margin-right:10px;
+ margin-left: 10px;
+ vertical-align: middle;
+ font-size: 20px;
+}
+.note .post .meta-bottom .share-group .motai .content ul li:nth-child(1) i{
+    color: #fec801;
+}
+.note .post .meta-bottom .share-group .motai .content ul li:nth-child(2) i{
+  color: #00aaec;
+}
+.note .post .meta-bottom .share-group .motai .content ul li:nth-child(3) i{
+   color: #4460a0;
+}
+.note .post .meta-bottom .share-group .motai .content ul li:nth-child(5) i{
+  color: #388c26;
+}
+.note .post .meta-bottom .share-group .motai .content ul li:nth-child(4) i{
+    margin-right:2px;
+    color: #fa3f2d;
+}
+.note .post .meta-bottom .share-group .motai .san{
+    position: absolute;
+    bottom: 2px;
+    left: 67.5px;
+    height: 15px;
+    width: 15px;
+    transform: rotate(45deg);
+    border: 1px solid #b5b5b5;
+    border-top: none;
+    border-left: none;
+    background: #fff;
+}
 /************************用户页面*******************/

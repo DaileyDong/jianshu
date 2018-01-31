@@ -6,16 +6,16 @@
             <div class="row">
                 <div class="col-8 main">
                     <!--banner-->
-                    <div v-swiper:mySwiper="swiperOption" class="banner">
-                        <div class="swiper-wrapper">
+                    <div v-swiper:mySwiper="swiperOption" class="banner" @mouseover="bannerBtn" @mouseout="bannerDtn">
+                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="banner in banners">
                                 <img :src="banner">
                             </div>
                         </div>
 
-                        <div class="swiper-pagination swiper-pagination-white"></div>
-                        <div class="swiper-button-prev swiper-button-white"></div>
-                        <div class="swiper-button-next swiper-button-white"></div>
+                        <div class="swiper-pagination swiper-pagination-white" v-show="true"></div>
+                        <div class="swiper-button-prev swiper-button-white" v-show="bannerObj"></div>
+                        <div class="swiper-button-next swiper-button-white" v-show="bannerObj"></div>
                     </div>
                     <!--热门专题-->
                     <div class="recommend-collection">
@@ -293,6 +293,7 @@ export default {
   data() {
     return {
      downObj:false,
+     bannerObj:false,
       banners: [
         "/banner1.jpg",
         "/banner2.jpg",
@@ -344,7 +345,14 @@ export default {
     },
     downOut(){
       this.downObj=false;
+    },
+    bannerBtn(){
+        this.bannerObj=true;
+    },
+    bannerDtn(){
+        this.bannerObj=false;
     }
+    
   }
 };
 </script>
