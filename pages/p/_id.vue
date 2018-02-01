@@ -83,12 +83,12 @@
                  <div class="like">
                     <div class="btn" :class="likeObj" @click="likeOk"> 
                         <div class="btn-like">
-                            <a :class="fontObj"><i class="fa fa-heart-o"></i>
+                            <a class="fontLike"><i class="fa fa-heart-o"></i>
                             喜欢
                             </a>
                         </div>
                         <div :class="modeObj">
-                            <a :class="numObj" ref="likes">{{number}}</a>
+                            <a class="fontNum">{{number}}</a>
                         </div>
                     </div>
                  </div>
@@ -150,14 +150,6 @@ export default {
         "like-group": true,
         likeActive: false
       },
-      fontObj: {
-        fontLike: true,
-        fontWhite: false
-      },
-      numObj: {
-        fontNum: true,
-        numWhite: false
-      },
       modeObj: {
         "modal-wrap": true,
         modeWhite: false
@@ -195,34 +187,37 @@ export default {
       }
     },
     likeOk() {
+      if(this.likeObj["likeActive"]==true){
+          //不喜欢
+        --this.number;
+      }else{
+         //喜欢
+        ++this.number;
+      }
       this.likeObj["like-group"] = !this.likeObj["like-group"];
       this.likeObj["likeActive"] = !this.likeObj["likeActive"];
-      this.fontObj["fontLike"] = !this.fontObj["fontLike"];
-      this.fontObj["fontWhite"] = !this.fontObj["fontWhite"];
-      this.numObj["fontNum"] = !this.numObj["fontNum"];
-      this.numObj["numWhite"] = !this.numObj["numWhite"];
       this.modeObj["modal-wrap"] = !this.modeObj["modal-wrap"];
       this.modeObj["modeWhite"] = !this.modeObj["modeWhite"];
-      let num = this.$refs.likes.innerHTML;
-      if (num == 26) {
-        this.number++;
-      } else {
-        this.number = 26;
-      }
     },
-    moreBtn(){
+    //阻止事件传播
+    moreBtn(ev){
+      ev.stopPropagation();
         this.mk=true;
     },
-    handleBodyClick(e){
-        let con=this.$refs.mode.id;
-         let add=e.target.id;
-         if(con!=add){
-           this.mk=false;
-         }
-    },
+    //使用refs和target判断id值
+    // handleBodyClick(ev){
+    //     let con=this.$refs.mode.id;
+    //      let add=ev.target.id;
+    //      if(con!=add){
+    //        this.mk=false;
+    //      }
+    // },
+    handleBodyClick(ev){
+      this.mk=false;
+    }
   },
 mounted () {
-  document.addEventListener('click', this.handleBodyClick)
+  document.addEventListener('click', this.handleBodyClick);
 },
 destroyed () {
   document.removeEventListener('click', this.handleBodyClick)

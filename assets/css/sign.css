@@ -127,7 +127,7 @@
 .sign .main .more-sign ul li a {
     width:50px;
     height:50px;
-    line-height:50px;
+    line-height:46px;
     display:block;
 }
 .sign .main .more-sign ul li.other {
@@ -135,7 +135,8 @@
     color:#939393;
 }
 .sign .main .more-sign ul li a i {
-    font-size:25px;
+    font-size:26px;
+    vertical-align: middle;
 }
 .sign .main form input.sign-up-btn {
     margin-top:20px;

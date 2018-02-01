@@ -542,6 +542,7 @@ footer .about li a{
 }
 .note .post .meta-bottom .like-group{
  border: 1px solid #ea6f5a;
+ color: #ea6f5a;
  border-radius: 40px;
  padding: 13px 0 15px;
 }
@@ -559,7 +560,6 @@ footer .about li a{
     border-left: 1px solid rgba(236,97,73,.4);
 }
 .note .post .meta-bottom  .btn-like .fontLike{
-    color: #ea6f5a!important;
     padding: 18px 15px 18px 30px;
 }
 .note .post .meta-bottom  .btn-like i{
@@ -567,7 +567,6 @@ footer .about li a{
     font-size: 21px;
 }
 .note .post .meta-bottom .fontNum{
-    color: #ea6f5a!important;
     padding: 18px 30px 18px 17px;
 }
 .note .post .meta-bottom .share-group a{
@@ -607,14 +606,6 @@ footer .about li a{
     color: #fff;
     border-radius: 40px!important;
     padding: 13px 0 15px!important;
-}
-.fontWhite{
-    color: #fff!important;
-    padding: 18px 15px 18px 30px;
-}
-.numWhite{
-    color: #fff!important;
-    padding: 18px 30px 18px 17px;
 }
 .modeWhite{
     border-left: 1px solid #fff;
