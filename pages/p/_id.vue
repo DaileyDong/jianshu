@@ -121,8 +121,11 @@
                          <div class="san"></div>
                      </div>
                  </div>
-                </div>
+               </div>
+              <!--留言-->
+              <myComment></myComment>
            </div>
+
            <!--悬浮的操作框-->
            <div class="side-bar"></div>
            <!--对应的推荐阅读-->
@@ -132,6 +135,7 @@
 </template>
 <script>
 import myHeader from "~/components/MyHeader";
+import myComment from "~/components/MyComment";
 import $ from 'jquery';
 export default {
   data() {
@@ -223,7 +227,8 @@ destroyed () {
   document.removeEventListener('click', this.handleBodyClick)
 },
   components: {
-    myHeader
+    myHeader,
+    myComment
   }
 };
 </script>

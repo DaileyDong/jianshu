@@ -35,6 +35,16 @@ ul,ol,dl {
     margin:0!important;
     padding:0!important;
 }
+.clearfix::after{
+  height: 0;
+  display: block;
+  content: "";
+  visibility: hidden;
+  clear: both;
+}
+.clearfix{
+    zoom: 1;
+}
 .my-container {
     margin-right: auto;
     margin-left: auto;
