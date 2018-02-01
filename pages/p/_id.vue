@@ -79,7 +79,7 @@
                 </div>
                 <div class="signature">曾经的阿里猿，现在的自由人。</div>
                 </div>
-               <div class="meta-bottom">
+               <div class="meta-bottom clea">
                  <div class="like">
                     <div class="btn" :class="likeObj" @click="likeOk"> 
                         <div class="btn-like">
@@ -105,7 +105,7 @@
                           <a href="javascript:void(0)" id = "Button3"  variant = "outline-success">
                          <i class="fa fa-qq qq"></i>
                      </a>
-                     <div class="btn more-share" @click="moreBtn" id="ms" ref="mode">
+                     <div class="btn more-share" @click.stop="moreBtn" id="ms" ref="mode">
                          更多分享
                      </div>
                      <div class="motai" v-show="mk">
@@ -205,7 +205,7 @@ export default {
     },
     //阻止事件传播
     moreBtn(ev){
-      ev.stopPropagation();
+       //ev.stopPropagation();
         this.mk=true;
     },
     //使用refs和target判断id值

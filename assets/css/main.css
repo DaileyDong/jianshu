@@ -549,6 +549,7 @@ footer .about li a{
 }
 .note .post .meta-bottom .share-group{
  float:  right;
+ position: relative;
 }
 .note .post .meta-bottom .like-group{
  border: 1px solid #ea6f5a;
@@ -623,9 +624,9 @@ footer .about li a{
     font-size: 18px;
 }
 .note .post .meta-bottom .share-group .motai{
-    position: relative;
-    top:-209px;
-    left: 140px;
+    position: absolute;
+    top: -160px;
+     right:-35px;
     height: 160px;
     width: 150px;
 }
