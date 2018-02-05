@@ -79,15 +79,15 @@
                 </div>
                 <div class="signature">曾经的阿里猿，现在的自由人。</div>
                 </div>
-               <div class="meta-bottom clea">
-                 <div class="like">
+               <div class="meta-bottom clearfix">
+                 <div class="like"> 
                     <div class="btn" :class="likeObj" @click="likeOk"> 
                         <div class="btn-like">
                             <a class="fontLike"><i class="fa fa-heart-o"></i>
                             喜欢
                             </a>
                         </div>
-                        <div :class="modeObj">
+                        <div class="modal-wrap">
                             <a class="fontNum">{{number}}</a>
                         </div>
                     </div>
@@ -154,10 +154,7 @@ export default {
         "like-group": true,
         likeActive: false
       },
-      modeObj: {
-        "modal-wrap": true,
-        modeWhite: false
-      }
+
     };
   },
   methods: {
@@ -200,8 +197,6 @@ export default {
       }
       this.likeObj["like-group"] = !this.likeObj["like-group"];
       this.likeObj["likeActive"] = !this.likeObj["likeActive"];
-      this.modeObj["modal-wrap"] = !this.modeObj["modal-wrap"];
-      this.modeObj["modeWhite"] = !this.modeObj["modeWhite"];
     },
     //阻止事件传播
     moreBtn(ev){
