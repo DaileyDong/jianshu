@@ -36,23 +36,24 @@
               </div>
             </div>
              <!--留言动图-->
-          <div class="comment-placeholder" style="display:none">
-  					<div class="author">
+            <div class="comment-placeholder" style="display:none">
+  					 <div class="author">
   							<div class="avatar"></div>
   							<div class="info">
   								<div class="name"></div>
   								<div class="meta"></div>
   							</div>
-  					</div>
-  					<div class="title"></div>
-  					<div class="title animated-delay "></div>
-  					<div class="tool-group">
+  					 </div>
+  					 <div class="title"></div>
+  				  	<div class="title animated-delay "></div>
+  				  	<div class="tool-group">
   						<i class="fa fa-thumbs-up"></i>
   						<div class="zan"></div>
   						<i class="fa fa-comment "></i>
   						<div class="zan"></div>
   					</div>
-  			  </div>
+  			    </div>
+
           <div class="comment" :id="'comment-'+comment.id" ref="commentRef" v-for="(comment,index) in comments" :key="index">
                <div class="comment-content">
                  <div class="author">
@@ -110,14 +111,13 @@
                    <p>{{comment.compiled_content}}</p>
                     <div class="tool-group">
                      <a @click="appActiveBtn(index)"><i ref="applaudClass" class="fa fa-thumbs-o-up"></i><span>{{comment.likes_count}}</span>人赞</a>
-                       <a @click="repeat_one(index)" ><i class="fa fa-comment-o"></i><span ref="applauds" :index="index" :id="comment.user_id">回复</span></a>
-                         <input type="hidden" :title="ok">    
+                       <a @click="repeat_one(index)" ><i class="fa fa-comment-o"></i><span >回复</span></a> 
                     </div>
                 </div>
                </div>
-               <!--二级内容-->
-               <div class="sub-comment-list">
-                 <div v-for="(subComment,index) in comment.children" :key="index" :id="subComment.id" class="sub-comment" >
+               <!--二级-->
+               <div class="sub-comment-list" v-if="comment.children.length!=0">
+                 <div v-for="(subComment,i) in comment.children" :key="i"  :id="subComment.id" class="sub-comment" >
                     <p>
                       <nuxt-link to="/u/123">
                       {{subComment.user.nickname}}
@@ -128,33 +128,33 @@
                     </p>
                     <div class="sub-tool-group">
                       <span>{{subComment.created_at | formateDate}}</span>
-                       <a href=""><i class="fa fa-comment-o"></i><span>回复</span></a>
+                       <a ><i class="fa fa-comment-o"></i><span>回复</span></a>
                    </div>
                  </div>
                  <div class="more-comment">
-                    <a href="javascript:void(0)" ><i class="fa fa-pencil"></i>
+                    <a @click="showSubCommentForm(index)"><i class="fa fa-pencil"></i>
                     <span>添加新评论</span></a>
                 </div> 
               <!--评论框组件-->
-              <div class="repeat" ref="repeats" :id="comment.user_id" :index="index">
-                         <form class="new-comment active-comments" v-form>
-                       <textarea placeholder="写下你的评论..." v-focus v-model="repeatData"></textarea>
+              <div class="repeat" >
+                         <form class="new-comment" v-if="activeIndex.includes(index)">
+                       <textarea placeholder="写下你的评论..." v-model="repeatData"></textarea>
                   <transition name="fade">
                          <div class="write-function-block clearfix">
                           <div class="emoji-modal-wrap">
-                          <a class="emoji" @click="emojiBtn(index)">
+                          <a class="emoji" @click="showSubEmoji(index)">
                           <i class="fa fa-smile-o"></i>
                           </a>
                     <transition name="fade">
                       <!--图标-->
-                        <div class="emoji-modal arrow-top" id="emoji-modal" v-show="false" ref="emojis">
+                        <div class="emoji-modal arrow-top" v-if="emojiIndex.includes(index)">
                          <vue-emoji @select="repeat_one_Emoji"></vue-emoji>
                          </div>
                     </transition>
                          </div>
                             <div class="hint">Ctrl+Enter 发表</div>
-                            <a class="btn btn-send" @click="sendData">发送</a>
-                               <a class="cancel" @click="send=false">取消</a>
+                            <a class="btn btn-send" @click="sendSubCommentData(index)">发送</a>
+                               <a class="cancel" @click="closeSubComment(index)">取消</a>
                                  </div>
                   </transition>
                           </form>
@@ -181,7 +181,6 @@ export default {
       dynamicID: 0,
       formActive: { form_one: false },
       emojiPic: false,
-      ok: { yes: false },
       comments: [
         {
           id: 19979655,
@@ -322,7 +321,9 @@ export default {
           }
         }
       ],
-      sorts: ["按喜欢排序", "按时间正序", "按时间倒序"]
+      sorts: ["按喜欢排序", "按时间正序", "按时间倒序"],
+      activeIndex: [],
+      emojiIndex: []
     };
   },
   methods: {
@@ -333,6 +334,7 @@ export default {
     repeat_one_Emoji(value) {
       this.emojiPic = false;
       this.repeatData += value;
+
     },
     sendData() {},
     //排序功能
@@ -350,17 +352,51 @@ export default {
       }
     },
     //一级回复打开框
-    repeat_one(index) {
-      //索引
-      let appId = this.$refs.applauds[index].id;
-      let repId = this.$refs.repeats[index].id;
-        this.$refs.repeats[index].children[0].className="new-comment";        
+    repeat_one(value) {
+      if (this.activeIndex.includes(value)) {
+        let index = this.activeIndex.indexOf(value);
+        this.activeIndex.splice(index, 1);
+      } else {
+        this.activeIndex.push(value);
+      }
     },
 
-    //一级回复显示图标
-    emojiBtn(index) {},
-
-    applaudBtn(id) {},
+    //发送
+    sendSubCommentData(value) {
+      if (this.activeIndex.includes(value)) {
+        let index = this.activeIndex.indexOf(value);
+        this.activeIndex.splice(index, 1);
+      } else {
+        this.activeIndex.push(value);
+      }
+    },
+    //取消
+    closeSubComment(value) {
+      if (this.activeIndex.includes(value)) {
+        let index = this.activeIndex.indexOf(value);
+        this.activeIndex.splice(index, 1);
+      } else {
+        this.activeIndex.push(value);
+      }
+    },
+    //新评论
+    showSubCommentForm(value) {
+      if (this.activeIndex.includes(value)) {
+        let index = this.activeIndex.indexOf(value);
+        this.activeIndex.splice(index, 1);
+      } else {
+        this.activeIndex.push(value);
+      }
+    },
+    //图标显示
+    showSubEmoji(value) {
+      if (this.emojiIndex.includes(value)) {
+        let index = this.emojiIndex.indexOf(value);
+        this.emojiIndex.splice(index, 1);
+      } else {
+        this.emojiIndex.push(value);
+      }
+    },
     //点赞功能
     appActiveBtn(index) {
       if (this.comments[index].liked == false) {
@@ -417,8 +453,7 @@ export default {
   },
   components: {
     vueEmoji
-  },
-
+  }
 };
 </script>
 <style scoped>
@@ -719,8 +754,5 @@ export default {
 }
 .note .post .comment-list .sub-comment-list .repeat .new-comment {
   margin: 30px 0 0;
-}
-.active-comments {
-  display: none;
 }
 </style>
