@@ -44,30 +44,30 @@
      
      <!--导航-->
      <div class="my-container">
-         <ul class="nav-list">
-             <li class="active">
+         <ul class="nav-list" ref="nav_refs">
+             <li >
              <nuxt-link to="/" >
             <i class="fa fa-compass"></i>
              <span>发现</span>
              </nuxt-link>
              </li>
              <li>
-             <nuxt-link to="/">
+             <nuxt-link to="/subscriptions/timeline">
             <i class="fa fa-book"></i>
              <span>关注</span>
              </nuxt-link>
              </li>
             <li class="notify" @mouseover="userShow2=true" @mouseleave="userShow2=false">
-             <nuxt-link to="/">
+             <nuxt-link to="/notifications/comments">
             <i class="fa fa-bell-o"></i>
              <span>消息</span>
              </nuxt-link>
              <ul class="drop-menu" v-show="userShow2">
-                 <li><nuxt-link to=""><i class="fa fa-comment-o"></i><span>评论</span></nuxt-link></li>
-                 <li><nuxt-link to=""><i class="fa fa-envelope-o"></i><span>简信</span></nuxt-link></li>
-                 <li><nuxt-link to=""><i class="fa fa-upload"></i><span>投稿要求</span></nuxt-link></li>
-                 <li><nuxt-link to=""><i class="fa fa-heart-o"></i><span>喜欢和赞</span></nuxt-link></li>
-                 <li><nuxt-link to=""><i class="fa fa-user-plus"></i><span>关注</span></nuxt-link></li>
+                 <li><nuxt-link to="/notifications/comments"><i class="fa fa-comment-o"></i><span>评论</span></nuxt-link></li>
+                 <li><nuxt-link to="/notifications/chats"><i class="fa fa-envelope-o"></i><span>简信</span></nuxt-link></li>
+                 <li><nuxt-link to="/notifications/requests"><i class="fa fa-upload"></i><span>投稿要求</span></nuxt-link></li>
+                 <li><nuxt-link to="/notifications/likes"><i class="fa fa-heart-o"></i><span>喜欢和赞</span></nuxt-link></li>
+                 <li><nuxt-link to="/notifications/follows"><i class="fa fa-user-plus"></i><span>关注</span></nuxt-link></li>
              </ul>
              </li>
 
@@ -86,7 +86,6 @@
   </div>
 </template>
 <script>
-import $ from 'jquery'
 export default {
   name: "MyHeader",
   data() {
@@ -253,11 +252,6 @@ export default {
         text-align:center;
         margin-top: 5px;
      }
-    nav .nav-list>li.active {
-        color:#ea6f5a;
-        background-color: #fff;
-     }
-   
      nav .nav-list .notify{
        position: relative;
      }

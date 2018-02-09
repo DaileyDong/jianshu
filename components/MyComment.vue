@@ -336,7 +336,6 @@ export default {
       this.repeatData += value;
 
     },
-    sendData() {},
     //排序功能
     is_sort(index) {
       this.$refs.sortActive.forEach(function(ele) {
@@ -363,30 +362,21 @@ export default {
 
     //发送
     sendSubCommentData(value) {
-      if (this.activeIndex.includes(value)) {
         let index = this.activeIndex.indexOf(value);
         this.activeIndex.splice(index, 1);
-      } else {
-        this.activeIndex.push(value);
-      }
+         let i = this.emojiIndex.indexOf(value);
+        this.emojiIndex.splice(i, 1);
     },
     //取消
     closeSubComment(value) {
-      if (this.activeIndex.includes(value)) {
-        let index = this.activeIndex.indexOf(value);
+      let index = this.activeIndex.indexOf(value);
         this.activeIndex.splice(index, 1);
-      } else {
-        this.activeIndex.push(value);
-      }
+         let i = this.emojiIndex.indexOf(value);
+        this.emojiIndex.splice(i, 1);
     },
     //新评论
     showSubCommentForm(value) {
-      if (this.activeIndex.includes(value)) {
-        let index = this.activeIndex.indexOf(value);
-        this.activeIndex.splice(index, 1);
-      } else {
-        this.activeIndex.push(value);
-      }
+      this.repeat_one(value);
     },
     //图标显示
     showSubEmoji(value) {
