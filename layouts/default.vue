@@ -19,6 +19,7 @@ Vue.filter('formateDate',function(value){
 });
 import 'bootstrap/dist/css/bootstrap.css'
 import '../assets/css/font-awesome.css'
+import '../assets/css/animate.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 export default {
 

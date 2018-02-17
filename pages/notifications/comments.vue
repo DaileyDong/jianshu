@@ -94,6 +94,10 @@ export default {
       ]
     };
   },
+  mounted(){
+   let dom1=document.querySelector('.aside ul li:nth-of-type(1)');
+   dom1.className="asideActive";
+  },
   components: {
     MyHeader,
     MyAside
@@ -101,6 +105,7 @@ export default {
 };
 </script>
 <style>
+
 .notification .aside {
   margin-top: 30px;
   padding: 0 0 30px;

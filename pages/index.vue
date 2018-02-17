@@ -276,8 +276,6 @@
                     </div>
                 </div>
             </div>
-        
-        
         </div>
         
     </div>
@@ -286,7 +284,6 @@
 <!-- 组件的模型 -->
 <script>
 import MyHeader from "~/components/MyHeader";
-import $ from "jquery";
 export default {
   // 组件的名称
   name: "Index",

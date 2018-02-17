@@ -11,10 +11,10 @@
          <i class="fa fa-paint-brush "></i> 写文章
      </nuxt-link>
      <!--未登录-->
-      <nuxt-link to="/sign-up" class="btn sign-up">注册</nuxt-link>
-      <nuxt-link to="/sign-in" class="btn sign-in">登录</nuxt-link>
+      <nuxt-link to="/sign-up" class="btn sign-up" style="display:none">注册</nuxt-link>
+      <nuxt-link to="/sign-in" class="btn sign-in" style="display:none">登录</nuxt-link>
      <!--如果用户登录了，那么显示用户头像-->
-     <div style="display:none" class="user"  @mouseover="userShow=true" @mouseleave="userShow=false">
+     <div  class="user"  @mouseover="userShow=true" @mouseleave="userShow=false">
          <div class="drop-down">
              <nuxt-link to="/users" class="avatar">
              <img src="../assets/img/user.jpg" alt="user">
@@ -22,21 +22,21 @@
          </div>
          <div class="drop-menu" v-show="userShow">
              <ul>
-                 <li><nuxt-link to="/">
+                 <li><nuxt-link to="/u/123">
                  <i class="fa fa-user"></i>我的主页
                  </nuxt-link></li>
-                    <li><nuxt-link to="/">
+                    <li><nuxt-link to="/bookmarks">
                  <i class="fa fa-bookmark"></i>收藏的文章
                  </nuxt-link></li>
-                    <li><nuxt-link to="/">
+                    <li><nuxt-link to="/u/liked_notes">
                  <i class="fa fa-heart"></i>喜欢的文章
                  </nuxt-link></li>
-                    <li><nuxt-link to="/">
+                    <li><nuxt-link to="/settings/basic">
                  <i class="fa fa-cog"></i>设置
                  </nuxt-link></li>
                     <li><nuxt-link to="/">
                  <i class="fa fa-sign-out"></i>退出
-                 </nuxt-link></li>
+                  </nuxt-link></li>
                
              </ul>
          </div>

@@ -200,7 +200,6 @@ export default {
     },
     //阻止事件传播
     moreBtn(ev){
-       //ev.stopPropagation();
         this.mk=true;
     },
     //使用refs和target判断id值
@@ -211,15 +210,13 @@ export default {
     //        this.mk=false;
     //      }
     // },
+
     handleBodyClick(ev){
       this.mk=false;
     }
   },
 mounted () {
   document.addEventListener('click', this.handleBodyClick);
-},
-destroyed () {
-  document.removeEventListener('click', this.handleBodyClick)
 },
   components: {
     myHeader,

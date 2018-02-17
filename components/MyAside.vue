@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-        <li v-for="(nav,index) in navs" :key="index">
+        <li v-for="(nav,index) in navs" :key="index" ref="aside_ref">
             <nuxt-link :to="nav.url"><i :class="nav.icon"></i><span>{{nav.title}}</span></nuxt-link>
         </li>
     </ul>
@@ -21,6 +21,7 @@ export default {
       ]
     };
 },
+
 }
 </script>
 <style scoped>
@@ -45,8 +46,9 @@ export default {
 }
 .notification .aside ul li:hover{
   background-color: #f0f0f0;
-    border-radius: 4px;
+  border-radius: 4px;
 }
+
 .notification .aside ul span{
   font-size: 15px;
   vertical-align: middle;
