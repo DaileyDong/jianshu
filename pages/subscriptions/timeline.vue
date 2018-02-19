@@ -8,6 +8,9 @@
 import MyHeader from "~/components/MyHeader";
 export default {
   name:'timeline',
+  mounted(){
+     document.querySelector('.nav-list li:nth-of-type(2) a').className="headerActive";
+  },
    components:{
     MyHeader
   }

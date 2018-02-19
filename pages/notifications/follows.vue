@@ -83,6 +83,7 @@ export default {
   mounted() {
     let dom1 = document.querySelector(".aside ul li:nth-of-type(5)");
     dom1.className = "asideActive";
+   document.querySelector('.nav-list li:nth-of-type(3) a').className="headerActive";
   },
   components: {
     MyHeader,

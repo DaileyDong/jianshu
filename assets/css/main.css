@@ -58,6 +58,9 @@ ul,ol,dl {
   background-color: #f0f0f0;
   border-radius: 4px;
 }
+.headerActive{
+    color: #ea6f5a!important;
+}
 @media (min-width: 992px){
     .my-container {
         width: 960px!important;

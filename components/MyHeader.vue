@@ -95,6 +95,7 @@ export default {
       bgShow:false,
     };
   },
+
 };
 </script>
 <style scoped>

@@ -31,6 +31,7 @@ export default {
     mounted(){
    let dom3=document.querySelector('.aside ul li:nth-of-type(3)');
    dom3.className="asideActive";
+   document.querySelector('.nav-list li:nth-of-type(3) a').className="headerActive";
   },
   components: {
     MyHeader,

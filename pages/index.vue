@@ -329,6 +329,9 @@ export default {
       deg: 360
     };
   },
+  mounted(){
+      document.querySelector('.nav-list li:first-child a').className="headerActive";
+  },
   components: {
     MyHeader
   },
