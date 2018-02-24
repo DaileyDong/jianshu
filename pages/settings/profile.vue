@@ -10,7 +10,7 @@
                <table>
                    <tbody>
                        <tr>
-                           <td class="setting-title pull-left">性别</td>
+                           <td class="setting-title top-line">性别</td>
                            <td class="sex">
                                 <input type="radio" name="sex" id="">
                                <span>男</span>
@@ -21,7 +21,7 @@
                            </td>
                        </tr>
                        <tr>
-                           <td class="setting-title">个人简介</td>
+                           <td class="setting-title left-line">个人简介</td>
                            <td class="line">
                                <form>
                                    <textarea placeholder="请填写你的个人简介"></textarea>
@@ -29,7 +29,7 @@
                            </td>
                        </tr>
                        <tr>
-                           <td class="setting-title">个人网站</td>
+                           <td class="setting-title left-line setting-input">个人网站</td>
                            <td class="line">
                                <form>
                                    <input type="text" placeholder="https://你的网址">
@@ -48,7 +48,7 @@
                            </td>
                        </tr>
                        <tr>
-                           <td class="setting-title">社交账号</td>
+                           <td class="setting-title left-line setting-input">社交账号</td>
                            <td class="social-bind line">
                                <p>你可以通过绑定的社交帐号登录简书。出于安全因素, 你最初用来创建账户的社交帐号不能移除。</p>
                                <p>如果帐号被占用，你可以在<a href="javascript:void(0)">简书帐号绑定解绑相关问题汇总</a>中获得相关帮助。</p>
@@ -107,9 +107,25 @@ table{
 .setting .main input[type="radio"]{
   margin-right: 10px;
 }
-
+.top-line{
+    padding-top: 0!important;
+    vertical-align: bottom;
+}
+.left-line{
+    vertical-align: top;
+}
+.setting-input{
+    line-height: 33px;
+}
+.weixin-qrcode{
+    vertical-align: middle;
+}
+.setting .main .sex{
+    padding-top: 0;
+}
 .setting .main .sex span{
     margin-right: 20px;
+    font-size: 15px;
 }
 .setting .main tr td:nth-of-type(2){
     padding-left: 20px;

@@ -154,7 +154,6 @@ export default {
   border: 1px solid rgba(59, 194, 29, 0.7);
   color: #42c02e !important;
   padding: 4px 12px;
-  margin-left: 40px;
   font-weight: 400;
   text-align: center;
   background-color: #fff;
@@ -163,6 +162,8 @@ export default {
 }
 .setting .main .btn-hollow {
   padding: 4px 12px;
+  font-size: 14px;
+  outline: 0;
   color: #42c02e !important;
   font-weight: 400;
   text-align: center;
@@ -190,6 +191,7 @@ export default {
 .setting .main input[type="email"] {
   width: 70%;
   padding: 5px 10px;
+  font-size: 15px;
   border: 1px solid #c8c8c8;
   border-radius: 4px;
   margin-right: 10px;

@@ -831,6 +831,7 @@ export default {
   vertical-align: middle;
 }
 .person .aside .list li a.name {
+  font-size: 14px;
   color: #333 !important;
 }
 </style>

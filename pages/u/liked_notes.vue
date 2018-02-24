@@ -481,6 +481,7 @@ export default {
 .no_follow {
   float: right;
   margin-top: 8px;
+  font-size: 15px;
   border-color: #42c02e;
   background-color: #42c02e;
   color: #fff !important;
@@ -568,6 +569,7 @@ export default {
   vertical-align: middle;
 }
 .person .aside .list li a.name {
+  font-size: 14px;
   color: #333 !important;
 }
 </style>

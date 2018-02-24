@@ -165,6 +165,7 @@ border-top: 1px solid #f0f0f0;
   left: auto;
   right: 15px;
   color: #333;
+  font-size: 14px;
   display: block;
   min-width: inherit;
   border-color: transparent;

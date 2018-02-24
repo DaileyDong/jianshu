@@ -105,6 +105,7 @@ export default {
 }
 .notification .main .like-list .info{
   display: inline-block;
+  font-size: 15px;
   vertical-align: middle;
 }
 .notification .main .like-list .info .user{
