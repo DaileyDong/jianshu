@@ -16,7 +16,7 @@
      <!--如果用户登录了，那么显示用户头像-->
      <div  class="user"  @mouseover="userShow=true" @mouseleave="userShow=false">
          <div class="drop-down">
-             <nuxt-link to="/users" class="avatar">
+             <nuxt-link to="/u/123" class="avatar">
              <img src="../assets/img/user.jpg" alt="user">
              </nuxt-link>
          </div>
