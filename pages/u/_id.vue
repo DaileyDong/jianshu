@@ -66,8 +66,44 @@
                      </li>
                  </ul>
                  <div id="list-container">
+                     <!--文章列表模块-->
+                     <ul class="note-list" v-if="num==0?true:false">
+                       <li>
+                         <div class="content">
+                           <div class="author">
+                             <nuxt-link to="/u/123" class="avatar">
+                             <img src="../../static/89731766ca20.jpg" alt="">
+                             </nuxt-link>
+                             <div class="info">
+                               <nuxt-link to="/u/123" class="nickname">
+                               朱庇特的白银时代
+                               </nuxt-link>
+                               <span class="time">02.05 11:48</span>
+                             </div>
+                           </div>
+                           <nuxt-link to="/p/123" class="title">
+                           使用简书
+                           </nuxt-link>
+                           <p class="abstract">写一篇美文!</p>
+                           <div class="meta">
+                               <nuxt-link to="/p/123">
+                                        <i class="fa fa-eye"></i>
+                                        6
+                                        </nuxt-link>
+                                        <nuxt-link to="/p/123">
+                                        <i class="fa fa-comment"></i>
+                                        4
+                                        </nuxt-link>
+                                        <span class="heart">
+                                            <i class="fa fa-heart"></i>
+                                            2
+                                        </span>
+                           </div>
+                         </div>
+                       </li>
+                     </ul>
                      <!--动态列表模块-->
-                     <ul class="note-list" v-if="dynamic">
+                     <ul class="note-list" v-if="num==1?true:false">
                          <!--喜欢了评论-->
                          <li>
                              <div class="content">
@@ -257,44 +293,8 @@
                              </div>
                          </li>
                      </ul>
-                     <!--文章列表模块-->
-                     <ul class="note-list" v-if="article">
-                       <li>
-                         <div class="content">
-                           <div class="author">
-                             <nuxt-link to="/u/123" class="avatar">
-                             <img src="../../static/89731766ca20.jpg" alt="">
-                             </nuxt-link>
-                             <div class="info">
-                               <nuxt-link to="/u/123" class="nickname">
-                               朱庇特的白银时代
-                               </nuxt-link>
-                               <span class="time">02.05 11:48</span>
-                             </div>
-                           </div>
-                           <nuxt-link to="/p/123" class="title">
-                           使用简书
-                           </nuxt-link>
-                           <p class="abstract">写一篇美文!</p>
-                           <div class="meta">
-                               <nuxt-link to="/p/123">
-                                        <i class="fa fa-eye"></i>
-                                        6
-                                        </nuxt-link>
-                                        <nuxt-link to="/p/123">
-                                        <i class="fa fa-comment"></i>
-                                        4
-                                        </nuxt-link>
-                                        <span class="heart">
-                                            <i class="fa fa-heart"></i>
-                                            2
-                                        </span>
-                           </div>
-                         </div>
-                       </li>
-                     </ul>
                      <!--最新评论-->
-                      <ul class="note-list" v-if="new_comment">
+                      <ul class="note-list" v-if="num==2?true:false">
                        <li>
                          <div class="content">
                            <div class="author">
@@ -330,7 +330,7 @@
                        </li>
                      </ul>
                      <!--热门-->
-                      <ul class="note-list" v-if="hot">
+                      <ul class="note-list" v-if="num==3?true:false">
                        <li>
                          <div class="content">
                            <div class="author">
@@ -442,10 +442,7 @@ export default {
         }
       ],
       icons:'fa-check',
-      dynamic: false,
-      article:false,
-      hot:false,
-      new_comment:false
+      num:0,
     };
   },
   methods: {
@@ -454,27 +451,7 @@ export default {
         value.className = "";
       });
       this.$refs.triggers[i].className = "trigger_active";
-     if(i==0){
-      this.article=true;
-      this.dynamic=false;
-      this.hot=false;
-      this.new_comment=false;
-     }else if (i == 1) {
-       this.article=false;
-        this.dynamic = true;
-        this.hot=false;
-      this.new_comment=false;
-      }else if(i==2){
-       this.article=false;
-        this.dynamic = false;
-        this.hot=false;
-      this.new_comment=true;
-      }else if(i==3){
-       this.article=false;
-        this.dynamic = false;
-        this.hot=true;
-      this.new_comment=false;
-      }
+      this.num=i;
     },
     followBtn(){
      if(this.$refs.followed.innerHTML=='取消关注'){
@@ -501,7 +478,6 @@ export default {
     }
   },
   mounted(){
-    this.article=true;
     this.$refs.triggers[0].className = "trigger_active";
   },
   components: {

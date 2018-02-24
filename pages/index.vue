@@ -302,7 +302,7 @@ export default {
       abouts: [
         { name: "姓名：董邦军" },
         { name: "联系方式：13203878630" },
-        { name: "GitHub账号: www.github.com/daileydong" }
+        { name: "GitHub账号: https://github.com/daileydong" }
       ],
       swiperOption: {
         loop: true,

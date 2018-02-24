@@ -137,7 +137,7 @@ ul,ol,dl {
 .index .main .recommend-collection a{
     display:inline-block;
     margin: 0 18px 18px 0;
-    min-height: 34px;
+    min-height: 32px;
     line-height:0;
     border-radius: 4px;
     background-color: #f7f7f7;
@@ -158,7 +158,7 @@ ul,ol,dl {
 .index .main .recommend-collection .more-hot-collection{
   display: inline-block;
   color: #787878;
-  line-height:34px;
+  line-height:32px;
   font-size: 14px;
   border: none;
   background: none;

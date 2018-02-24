@@ -65,8 +65,29 @@
                      </li>
                  </ul>
                  <div id="list-container">
+                   <!--关注的专题-->
+                   <ul class="user-list" v-if="num==0?true:false">
+                     <li v-for="(note,index) in notes" :key="index" ref="followsProject">
+                       <nuxt-link to="/u/123" class="avatar-collection">
+                       <img :src="note.src" alt="">
+                       </nuxt-link>
+                       <div class="info">
+                         <nuxt-link to="c/123" class="title">{{note.title}}</nuxt-link>
+                         <div class="meta">
+                           <nuxt-link to="/u/123">
+                           简书
+                           </nuxt-link>
+                           收录了41887篇文章，1222222人关注
+                         </div>
+                       </div> 
+                       <a href="javascript:void(0)" class="is_follow"  @click="follow_click(index)"  @mouseover="follow_over(index)"  @mouseout="follow_out(index)" >
+                         <i class="fa fa-check" ></i>
+                         <span :ref="'a'+index">已关注</span>
+                       </a>
+                     </li>
+                   </ul>
                    <!--喜欢文章列表-->
-                  <ul class="nost-list" v-if="like">
+                  <ul class="nost-list" v-if="num==1?true:false">
                     <li>
                       <div class="content">
                           <div class="author">
@@ -133,27 +154,6 @@
                       </div>
                    </li>
                   </ul>
-                  <!--关注的专题-->
-                   <ul class="user-list" v-if="followed">
-                     <li v-for="(note,index) in notes" :key="index" ref="followsProject">
-                       <nuxt-link to="/u/123" class="avatar-collection">
-                       <img :src="note.src" alt="">
-                       </nuxt-link>
-                       <div class="info">
-                         <nuxt-link to="c/123" class="title">{{note.title}}</nuxt-link>
-                         <div class="meta">
-                           <nuxt-link to="/u/123">
-                           简书
-                           </nuxt-link>
-                           收录了41887篇文章，1222222人关注
-                         </div>
-                       </div> 
-                       <a href="javascript:void(0)" class="is_follow"  @click="follow_click(index)"  @mouseover="follow_over(index)"  @mouseout="follow_out(index)" >
-                         <i class="fa fa-check" ></i>
-                         <span :ref="'a'+index">已关注</span>
-                       </a>
-                     </li>
-                   </ul>
                  </div>
              </div>
           </div>
@@ -213,8 +213,7 @@ export default {
   name: "liked_notes",
   data() {
     return {
-      like: false,
-      followed: false,
+      num:1,
       triggers: ["关注的专题/文集/连载 6", "喜欢的文章 4"],
       notes: [
         {
@@ -234,13 +233,7 @@ export default {
         value.className = "";
       });
       this.$refs.triggers[i].className = "trigger_active";
-      if (i == 0) {
-        this.followed = true;
-        this.like = false;
-      } else if (i == 1) {
-        this.followed = false;
-        this.like = true;
-      }
+      this.num=i;
     },
     follow_click(value) {
       if (this.$refs["a" + value][0].innerHTML == "取消关注") {
@@ -267,7 +260,6 @@ export default {
     }
   },
   mounted() {
-    this.like = true;
     this.$refs.triggers[1].className = "trigger_active";
   },
   components: {
