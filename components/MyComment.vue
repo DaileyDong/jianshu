@@ -21,7 +21,7 @@
             </transition>
           </div>
           <div class="hint">Ctrl+Enter 发表</div>
-          <a class="btn btn-send" @click="sendData">发送</a>
+          <a class="btn btn-send" >发送</a>
           <a class="cancel" @click="send=false">取消</a>
         </div>
           </transition>
@@ -53,7 +53,7 @@
   						<div class="zan"></div>
   					</div>
   			    </div>
-
+          
           <div class="comment" :id="'comment-'+comment.id" ref="commentRef" v-for="(comment,index) in comments" :key="index">
                <div class="comment-content">
                  <div class="author">
@@ -137,18 +137,18 @@
                 </div> 
               <!--评论框组件-->
               <div class="repeat" >
+                    <transition :duration="200" name="fade">
                          <form class="new-comment" v-if="activeIndex.includes(index)">
-                       <textarea placeholder="写下你的评论..." v-model="repeatData"></textarea>
-                  <transition name="fade">
+                       <textarea placeholder="写下你的评论..." v-model="subCommentList[index]"></textarea>
                          <div class="write-function-block clearfix">
                           <div class="emoji-modal-wrap">
                           <a class="emoji" @click="showSubEmoji(index)">
                           <i class="fa fa-smile-o"></i>
                           </a>
-                    <transition name="fade">
+                    <transition :duration="200" name="fade">
                       <!--图标-->
                         <div class="emoji-modal arrow-top" v-if="emojiIndex.includes(index)">
-                         <vue-emoji @select="repeat_one_Emoji"></vue-emoji>
+                         <vue-emoji @select="selectSubEmoji"></vue-emoji>
                          </div>
                     </transition>
                          </div>
@@ -156,8 +156,8 @@
                             <a class="btn btn-send" @click="sendSubCommentData(index)">发送</a>
                                <a class="cancel" @click="closeSubComment(index)">取消</a>
                                  </div>
-                  </transition>
                           </form>
+                       </transition>
                      </div>
                </div>
               </div>
@@ -177,7 +177,7 @@ export default {
       send: false,
       showEmoji: false,
       value: "",
-      repeatData: "",
+      subCommentList:[],
       dynamicID: 0,
       formActive: { form_one: false },
       emojiPic: false,
@@ -331,10 +331,18 @@ export default {
       this.showEmoji = false;
       this.value += code;
     },
-    repeat_one_Emoji(value) {
-      this.emojiPic = false;
-      this.repeatData += value;
-
+   //添加图标到文本框
+    selectSubEmoji(code){
+      //当前下标
+      let index=this.emojiIndex[0];
+      //将表情所代表的code值放入表单中
+      if(this.subCommentList[index]==null){
+        this.subCommentList[index]='';
+      }
+      this.subCommentList[index]+=code;
+      //关掉表情
+      let i = this.emojiIndex.indexOf(index);
+      this.emojiIndex.splice(i, 1);
     },
     //排序功能
     is_sort(index) {
@@ -350,7 +358,7 @@ export default {
         this.comments.sort(this.yes("created_at"));
       }
     },
-    //一级回复打开框
+    //回复打开框
     repeat_one(value) {
       if (this.activeIndex.includes(value)) {
         let index = this.activeIndex.indexOf(value);
@@ -358,25 +366,31 @@ export default {
       } else {
         this.activeIndex.push(value);
       }
+      //清除文本框
+      this.subCommentList[value]='';
+      let i = this.emojiIndex.indexOf(value);
+      this.emojiIndex.splice(i, 1);
     },
 
     //发送
     sendSubCommentData(value) {
-        let index = this.activeIndex.indexOf(value);
-        this.activeIndex.splice(index, 1);
-         let i = this.emojiIndex.indexOf(value);
-        this.emojiIndex.splice(i, 1);
+      let index = this.activeIndex.indexOf(value);
+      this.activeIndex.splice(index, 1);
+      let i = this.emojiIndex.indexOf(value);
+      this.emojiIndex.splice(i, 1);
     },
     //取消
     closeSubComment(value) {
       let index = this.activeIndex.indexOf(value);
-        this.activeIndex.splice(index, 1);
-         let i = this.emojiIndex.indexOf(value);
-        this.emojiIndex.splice(i, 1);
+      this.activeIndex.splice(index, 1);
+      let i = this.emojiIndex.indexOf(value);
+      this.emojiIndex.splice(i, 1);
+      this.subCommentList[value]='';
     },
     //新评论
     showSubCommentForm(value) {
       this.repeat_one(value);
+      this.subCommentList[value]='';
     },
     //图标显示
     showSubEmoji(value) {

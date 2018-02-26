@@ -67,11 +67,11 @@
                     <td class="setting-title">语言设置</td>
                       <td>
                           <div class="col-xs-4">
-                              <input type="radio" class="language" checked>
+                              <input type="radio" class="language" name="language" checked>
                                <span>中文简体</span>
                           </div>
                           <div class="col-xs-8">
-                              <input type="radio" class="language">
+                              <input type="radio" class="language" name="language">
                                <span>中文繁体</span>
                           </div>
                           </td>

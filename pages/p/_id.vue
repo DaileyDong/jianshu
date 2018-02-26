@@ -202,14 +202,6 @@ export default {
     moreBtn(ev){
         this.mk=true;
     },
-    //使用refs和target判断id值
-    // handleBodyClick(ev){
-    //     let con=this.$refs.mode.id;
-    //      let add=ev.target.id;
-    //      if(con!=add){
-    //        this.mk=false;
-    //      }
-    // },
 
     handleBodyClick(ev){
       this.mk=false;
