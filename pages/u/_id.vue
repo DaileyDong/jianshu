@@ -58,7 +58,7 @@
              </div>
              <div id="outer-container">
                  <ul class="trigger-menu">
-                     <li v-for="(trigger,index) in triggers" ref="triggers" :key="index" @click="dhClick(index)" >
+                     <li  v-for="(trigger,index) in triggers" ref="triggers" :key="index" @click="dhClick(index)" >
                         <a href="javascript:void(0)">
                             <i :class="trigger.icon"></i>
                             {{trigger.title}}
@@ -525,6 +525,9 @@ export default {
   padding: 0 7px 0 0;
   border-right: 1px solid #f0f0f0;
   color: #969696;
+}
+.person .main .main-top .info ul li:last-of-type .meta-block{
+	border: none;
 }
 .person .main .main-top .info ul p {
   margin-bottom: -3px;

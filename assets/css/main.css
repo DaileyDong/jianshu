@@ -137,7 +137,7 @@ ul,ol,dl {
 .index .main .recommend-collection a{
     display:inline-block;
     margin: 0 18px 18px 0;
-    min-height: 32px;
+    min-height: 34px;
     line-height:0;
     border-radius: 4px;
     background-color: #f7f7f7;
@@ -147,7 +147,7 @@ ul,ol,dl {
 .index .main .recommend-collection a img{
     width: 32px;
     height: 32px;
-    vertical-align:middle;
+    vertical-align:top;
 }
 .index .main .recommend-collection a span{
   display: inline-block;

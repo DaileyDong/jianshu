@@ -307,6 +307,9 @@ export default {
   border-right: 1px solid #f0f0f0;
   color: #969696;
 }
+.person .main .main-top .info ul li:last-of-type .meta-block{
+	border: none;
+}
 .person .main .main-top .info ul p {
   margin-bottom: -3px;
   font-size: 15px;
