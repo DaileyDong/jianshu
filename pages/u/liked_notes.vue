@@ -6,7 +6,7 @@
           <div class="col-8 main" >
              <div class="main-top">
                  <nuxt-link to="/u/123" class="avatar">
-                 <img src="../../static/89731766ca20.jpg" alt="">
+                 <img src="~static/89731766ca20.jpg" alt="">
                  </nuxt-link>
                  <div class="title">
                   <nuxt-link to="/u/123" class="name">朱庇特的白银时代</nuxt-link>
@@ -92,7 +92,7 @@
                       <div class="content">
                           <div class="author">
                               <nuxt-link to="/u/123" class="avatar">
-                              <img src="../../assets/img/user.jpg" alt="">
+                              <img src="~assets/img/user.jpg" alt="">
                               </nuxt-link>
                               <div class="info">
                                   <nuxt-link to="/u/123" class="nickname">草根女王的简爱</nuxt-link>
@@ -121,12 +121,12 @@
                     </li>
                     <li class="have-img">
                        <nuxt-link to="/p/123" class="wrap-img">
-                       <img src="../../static/shou1.jpg" alt="" >
+                       <img src="~static/shou1.jpg" alt="" >
                        </nuxt-link>
                       <div class="content">
                           <div class="author">
                               <nuxt-link to="/u/123" class="avatar">
-                              <img src="../../assets/img/user.jpg" alt="">
+                              <img src="~assets/img/user.jpg" alt="">
                               </nuxt-link>
                               <div class="info">
                                   <nuxt-link to="/u/123" class="nickname">关土</nuxt-link>
@@ -159,24 +159,30 @@
           </div>
           <div class="col-4 aside clearfix" >
               <div class="title">个人介绍</div>
-              <a href="javascript:void(0)" class="function-btn">
+              <a href="javascript:void(0)" class="function-btn" @click="proFileEdit=true">
                   <i class="fa fa-pencil"></i>
                   编辑
               </a>
+                 <form  method="post" class="profile-edit" v-if="proFileEdit">
+                <textarea>
+                </textarea>
+                <button>保存</button>
+                <a href="javascript:void(0)" @click="proFileEdit=false">取消</a>
+              </form>
               <div class="description">
               </div>
               <ul class="user-dynamic">
                   <li>
-                      <nuxt-link to="/u/123/subscription">
+                      <a href="javascript:void" @click="switchBtn">
                       <i class="fa fa-th-large"></i>
                       <span>我关注的专题/文集/连载</span>
-                      </nuxt-link>
+                      </a>
                   </li>
                   <li>
-                     <nuxt-link to="/u/123/liked_notes">
+                     <a href="javascript:void(0)" @click="switchBtn2">
                       <i class="fa fa-heart-o"></i>
                       <span>我喜欢的文章</span>
-                      </nuxt-link>
+                      </a>
                   </li>
               </ul>
               <!--专题和文集-->
@@ -214,6 +220,7 @@ export default {
   data() {
     return {
       num:1,
+      proFileEdit:false,
       triggers: ["关注的专题/文集/连载 6", "喜欢的文章 4"],
       notes: [
         {
@@ -257,7 +264,17 @@ export default {
         this.$refs["a" + value][0].innerHTML = "已关注";
         this.$refs.followsProject[value].lastChild.firstChild.className ="fa fa-check";
       }
-    }
+    },
+    switchBtn(){
+      this.num=0;
+      this.$refs.triggers[0].className = 'trigger_active';
+      this.$refs.triggers[1].className='';
+    },
+    switchBtn2(){
+      this.num=1;
+      this.$refs.triggers[1].className = 'trigger_active';
+      this.$refs.triggers[0].className='';
+    },
   },
   mounted() {
     this.$refs.triggers[1].className = "trigger_active";
@@ -506,6 +523,42 @@ export default {
   margin-bottom: 10px;
   font-size: 14px;
   color: #969696;
+}
+.person .aside .profile-edit{
+  margin: 0 0 20px;
+  display:block;
+}
+.person .aside .profile-edit textarea{
+    margin-bottom: 5px;
+    width: 100%;
+    height: 125px;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: hsla(0,0%,71%,.1);
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+}
+.person .aside .profile-edit button{
+  padding: 0;
+  margin: 0;
+  padding: 5px 20px;
+  font-size: 14px;
+  border-radius: 40px;
+  color: #42c02e;
+  background-color: #fff;
+ border: 1px solid rgba(59,194,29,.7);
+  outline: none;
+  cursor: pointer;
+}
+.person .aside .profile-edit a{
+  margin-left: 10px;
+  font-size: 14px;
+  color: #969696!important;
+}
+.person .aside .profile-edit a:hover{
+  color: #000!important;
 }
 .person .aside .function-btn {
   float: right;

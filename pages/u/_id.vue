@@ -8,7 +8,7 @@
                  <nuxt-link to="/u/123" class="avatar">
                  <img src="../../static/89731766ca20.jpg" alt="">
                  </nuxt-link>
-                 <div class="title">
+                 <div class="title" >
                   <nuxt-link to="/u/123" class="name">朱庇特的白银时代</nuxt-link>
                  </div>
                  <div class="info">
@@ -55,6 +55,8 @@
                       </li>
                   </ul>
                  </div>
+                 <button class="simpleMail">发简信</button>
+                 <button :class="buttonClass"  @mouseover="followOver1" @mouseout="followOut1" @click="followBtn1"><i :class="iconName"></i><span ref="buttons">关注</span></button>
              </div>
              <div id="outer-container">
                  <ul class="trigger-menu">
@@ -66,8 +68,25 @@
                      </li>
                  </ul>
                  <div id="list-container">
+                     <!--缓冲动画-->
+                      <div class="buffer" v-if="num==0?true:false">
+                        <div class="info">
+                          <div class="avatar"></div>
+                          <div class="title"></div>
+                        </div>
+                        <div class="line-one"></div>
+                         <div class="line-two"></div>
+                         <div class="line-three"></div>
+                         <div class="line-four"></div>
+                         <div class="comment">
+                          <i class="fa fa-eye"></i><span></span>
+                           <i class="fa fa-comment"></i><span></span>
+                          <i class="fa fa-heart"></i><span></span>
+                         </div>
+                         <div class="pic"></div>
+                      </div>
                      <!--文章列表模块-->
-                     <ul class="note-list" v-if="num==0?true:false">
+                     <ul class="note-list" v-if="false">
                        <li>
                          <div class="content">
                            <div class="author">
@@ -250,7 +269,7 @@
                                 <div class="follow-detail">
                                     <div class="info">
                                        <a href="javascript:void(0)" class="avatar-collection">
-                                           <img src="../../assets/img/user.jpg" alt="">
+                                           <img src="~assets/img/user.jpg" alt="">
                                         </a>  
                                         <a href="javascript:void(0)" class="is_follow" ref="aFollow"  @click="followBtn" @mouseover="followOver" @mouseout="followOut">
                                             <i :class="icons" class="fa"></i>
@@ -370,21 +389,28 @@
           </div>
           <div class="col-4 aside clearfix" >
               <div class="title">个人介绍</div>
-              <a href="javascript:void(0)" class="function-btn">
+              <a href="javascript:void(0)" class="function-btn" @click="proFileEdit=true">
                   <i class="fa fa-pencil"></i>
                   编辑
               </a>
+              <form  method="post" class="profile-edit" v-if="proFileEdit">
+                <textarea>
+                </textarea>
+                <button>保存</button>
+                <a href="javascript:void(0)" @click="proFileEdit=false">取消</a>
+              </form>
+
               <div class="description">
               </div>
               <ul class="user-dynamic">
                   <li>
-                      <nuxt-link to="/u/123/subscription">
+                      <nuxt-link to="u/liked_notes">
                       <i class="fa fa-th-large"></i>
                       <span>我关注的专题/文集/连载</span>
                       </nuxt-link>
                   </li>
                   <li>
-                     <nuxt-link to="/u/123/liked_notes">
+                     <nuxt-link to="/u/liked_notes">
                       <i class="fa fa-heart-o"></i>
                       <span>我喜欢的文章</span>
                       </nuxt-link>
@@ -441,8 +467,11 @@ export default {
           title: "热门"
         }
       ],
-      icons:'fa-check',
-      num:0,
+      icons: "fa-check",
+      num: 0,
+      proFileEdit: false,
+      iconName: "fa fa-plus",
+      buttonClass: "btn-hollow"
     };
   },
   methods: {
@@ -451,33 +480,56 @@ export default {
         value.className = "";
       });
       this.$refs.triggers[i].className = "trigger_active";
-      this.num=i;
+      this.num = i;
     },
-    followBtn(){
-     if(this.$refs.followed.innerHTML=='取消关注'){
-     this.icons="fa-plus";
-     this.$refs.followed.innerHTML="关注";
-     this.$refs.aFollow.className='no_follow';
-     }else if(this.$refs.followed.innerHTML=='关注'){
-     this.icons="fa-check";
-     this.$refs.followed.innerHTML="已关注";
-     this.$refs.aFollow.className='is_follow';
-     }
+    followBtn() {
+      if (this.$refs.followed.innerHTML == "取消关注") {
+        this.icons = "fa-plus";
+        this.$refs.followed.innerHTML = "关注";
+        this.$refs.aFollow.className = "no_follow";
+      } else if (this.$refs.followed.innerHTML == "关注") {
+        this.icons = "fa-check";
+        this.$refs.followed.innerHTML = "已关注";
+        this.$refs.aFollow.className = "is_follow";
+      }
     },
-    followOver(){
-    if(this.$refs.followed.innerHTML=='已关注'){
-     this.icons='fa-times';
-     this.$refs.followed.innerHTML="取消关注";
-     }
+    followOver() {
+      if (this.$refs.followed.innerHTML == "已关注") {
+        this.icons = "fa-times";
+        this.$refs.followed.innerHTML = "取消关注";
+      }
     },
-    followOut(){
-    if(this.$refs.followed.innerHTML=='取消关注'){
-    this.icons='fa-check';
-     this.$refs.followed.innerHTML="已关注";
-     }
+    followBtn1() {
+      if (this.$refs.buttons.innerHTML == "取消关注") {
+        this.$refs.buttons.innerHTML = "关注";
+        this.iconName = "fa fa-plus";
+        this.buttonClass = "btn-hollow";
+      } else if (this.$refs.buttons.innerHTML == "关注") {
+        this.iconName = "fa fa-check";
+        this.$refs.buttons.innerHTML = "已关注";
+        this.buttonClass = "btn-active";
+      }
+    },
+    followOver1() {
+      if (this.$refs.buttons.innerHTML == "已关注") {
+        this.iconName = "fa fa-times";
+        this.$refs.buttons.innerHTML = "取消关注";
+      }
+    },
+    followOut1() {
+      if (this.$refs.buttons.innerHTML == "取消关注") {
+        this.iconName = "fa fa-check";
+        this.$refs.buttons.innerHTML = "已关注";
+      }
+    },
+    followOut() {
+      if (this.$refs.followed.innerHTML == "取消关注") {
+        this.icons = "fa-check";
+        this.$refs.followed.innerHTML = "已关注";
+      }
     }
   },
-  mounted(){
+  mounted() {
     this.$refs.triggers[0].className = "trigger_active";
   },
   components: {
@@ -487,6 +539,96 @@ export default {
 </script>
 
 <style scoped>
+.buffer {
+  color: #eaeaea;
+}
+.buffer .info .avatar {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background-color: #eaeaea;
+  border-radius: 50%;
+}
+.buffer .info .title {
+  position: relative;
+  top: -7px;
+  width: 100px;
+  height: 15px;
+  margin-left: 5px;
+  display: inline-block;
+  background-color: #eaeaea;
+}
+.buffer .line-one {
+  width: 200px;
+  height: 18px;
+  background-color: #eaeaea;
+  margin-bottom: 10px;
+}
+.buffer .line-two {
+  width: 250px;
+  height: 15px;
+  background-color: #eaeaea;
+  margin-bottom: 10px;
+  animation: lengthActive1 0.5s ease alternate-reverse infinite;
+}
+.buffer .line-three {
+  width: 400px;
+  height: 15px;
+  background-color: #eaeaea;
+  margin-bottom: 10px;
+  animation: lengthActive2 0.5s ease alternate infinite;
+}
+.buffer .line-four {
+  height: 14px;
+  width: 100px;
+  background-color: #eaeaea;
+  animation: lengthActive3 0.5s ease alternate infinite;
+}
+.buffer .comment i {
+  font-size: 15px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.buffer .comment span {
+  width: 50px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  background-color: #eaeaea;
+}
+.buffer .pic {
+  float: right;
+  width: 150px;
+  height: 100px;
+  margin-top: -140px;
+  background-color: #eaeaea;
+  border-radius: 4px;
+}
+@keyframes lengthActive1 {
+  0% {
+    width: 250px;
+  }
+  100% {
+    width: 300px;
+  }
+}
+@keyframes lengthActive2 {
+  0% {
+    width: 300px;
+  }
+  100% {
+    width: 400px;
+  }
+}
+@keyframes lengthActive3 {
+  0% {
+    width: 200px;
+  }
+  100% {
+    width: 100px;
+  }
+}
 .person {
   overflow-x: hidden;
 }
@@ -526,8 +668,8 @@ export default {
   border-right: 1px solid #f0f0f0;
   color: #969696;
 }
-.person .main .main-top .info ul li:last-of-type .meta-block{
-	border: none;
+.person .main .main-top .info ul li:last-of-type .meta-block {
+  border: none;
 }
 .person .main .main-top .info ul p {
   margin-bottom: -3px;
@@ -536,6 +678,46 @@ export default {
 }
 .person .main .main-top .info ul .meta-block i {
   margin-left: 3px;
+}
+.person .main .main-top .simpleMail{
+  float: right;
+   margin-top: -60px;
+   margin-right: 100px;
+  outline: none;
+  padding: 7px 15px;
+  font-size: 15px;
+  color: #42c02e;
+  border-radius: 40px;
+  background-color: #fff;
+  border: 1px solid #42c02e;
+  cursor: pointer;
+}
+.person .main .main-top .btn-hollow {
+  float: right;
+  margin-top: -60px;
+  outline: none;
+  padding: 7px 15px;
+  font-size: 15px;
+  border-radius: 40px;
+  background-color: #42c02e;
+  color: #fff;
+  border: 1px solid #42c02e;
+  cursor: pointer;
+}
+.btn-active {
+  float: right;
+  margin-top: -60px;
+  outline: none;
+  padding: 7px;
+  font-size: 15px;
+  border-radius: 40px;
+  background-color: #fff;
+  color: #8c8c8c;
+  border: 1px solid #c1c1c1;
+  cursor: pointer;
+}
+.person .main .main-top button i {
+  margin-right: 5px;
 }
 .trigger-menu {
   margin-bottom: 20px !important;
@@ -648,16 +830,15 @@ export default {
   line-height: 20px;
 }
 .note-list .origin-author {
-  margin-bottom: 5px;
   display: inline;
 }
-.note-list .meta>a {
+.note-list .meta > a {
   margin-right: 10px;
-  color:#b4b4b4!important;
+  color: #b4b4b4 !important;
 }
 .note-list .meta span {
   margin-right: 10px;
-  color: #b4b4b4!important;
+  color: #b4b4b4 !important;
 }
 
 .note-list .liketitle {
@@ -753,6 +934,42 @@ export default {
   font-size: 14px;
   color: #969696;
 }
+.person .aside .profile-edit {
+  margin: 0 0 20px;
+  display: block;
+}
+.person .aside .profile-edit textarea {
+  margin-bottom: 5px;
+  width: 100%;
+  height: 125px;
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: hsla(0, 0%, 71%, 0.1);
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  resize: none;
+  outline: none;
+}
+.person .aside .profile-edit button {
+  padding: 0;
+  margin: 0;
+  padding: 5px 20px;
+  font-size: 14px;
+  border-radius: 40px;
+  color: #42c02e;
+  background-color: #fff;
+  border: 1px solid rgba(59, 194, 29, 0.7);
+  outline: none;
+  cursor: pointer;
+}
+.person .aside .profile-edit a {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #969696 !important;
+}
+.person .aside .profile-edit a:hover {
+  color: #000 !important;
+}
 .person .aside .function-btn {
   float: right;
   font-size: 13px;
@@ -763,7 +980,7 @@ export default {
 }
 .person .aside .description {
   position: relative;
-  margin: 32px 0 16px 0;
+  margin: 22px 0 16px 0;
   padding: 0 0 16px;
   border-bottom: 1px solid #f0f0f0;
 }

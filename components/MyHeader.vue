@@ -4,7 +4,7 @@
  <div class=" width-limit">
      <!--logo-->
      <nuxt-link to="/" class="nav-logo" >
-         <img src="../assets/img/nav-logo.png"  alt="logo">
+         <img src="~assets/img/nav-logo.png"  alt="logo">
      </nuxt-link>
      <!--写文章-->
      <nuxt-link to="/create" class="btn write-btn" >
@@ -17,7 +17,7 @@
      <div  class="user"  @mouseover="userShow=true" @mouseleave="userShow=false">
          <div class="drop-down">
              <nuxt-link to="/u/123" class="avatar">
-             <img src="../assets/img/user.jpg" alt="user">
+             <img src="~assets/img/user.jpg" alt="user">
              </nuxt-link>
          </div>
          <div class="drop-menu" v-show="userShow">
