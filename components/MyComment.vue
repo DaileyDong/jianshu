@@ -110,7 +110,7 @@
                   <div class="comment-wrap">
                    <p>{{comment.compiled_content}}</p>
                     <div class="tool-group">
-                     <a @click="appActiveBtn(index)"><i ref="applaudClass" class="fa fa-thumbs-o-up"></i><span>{{comment.likes_count}}</span>人赞</a>
+                      <a @click="appActiveBtn(index)"><i ref="applaudClass" class="fa fa-thumbs-o-up"></i><span ref="textClass">{{comment.likes_count}}人赞</span></a>
                        <a @click="showSubCommentForm(index,'top','')" ><i class="fa fa-comment-o"></i><span >回复</span></a> 
                     </div>
                 </div>
@@ -176,7 +176,7 @@ export default {
   data() {
     return {
       send: false,
-      selectFocus:false,
+      selectFocus: false,
       showEmoji: false,
       value: "",
       subCommentList: [],
@@ -313,16 +313,16 @@ export default {
       sorts: ["按喜欢排序", "按时间正序", "按时间倒序"],
       activeIndex: [],
       emojiIndex: [],
-      commentId:[],
+      commentId: [],
       commentFormState: [],
-      nameArr:[]
+      nameArr: []
     };
   },
   methods: {
     selectEmoji(code) {
       this.showEmoji = false;
       this.value += code;
-      this.selectFocus=true;
+      this.selectFocus = true;
     },
     //添加图标到文本框
     selectSubEmoji(code) {
@@ -354,41 +354,40 @@ export default {
       }
     },
     //回复
-    showSubCommentForm(index,id,name){
-               let ID = id.toString();
-               if(this.commentId[index] == ID){
-                   //点两次
-                   this.activeIndex.splice(this.activeIndex.indexOf(index),1);
-                   this.commentId[index] = '';
-               }else{
-                   //点一次
-                   //清除表单内容
-                   this.subCommentList[index] = '';
-                   //表情关掉
-                   this.emojiIndex = [];
-                   if(!this.activeIndex.includes(index)){
-                       this.activeIndex.push(index);
-                   }
-                   // 判断用户名是否存在，如果存在添加
-                   if(name != ''){
-                       this.subCommentList[index] = `@${name} `;
-                   }
-                   //存一下上一个回复列表对应点击的按钮
-                   this.commentId[index] = ID;
-                   this.commentFormState[index]=true;
-               }
-            },
+    showSubCommentForm(index, id, name) {
+      let ID = id.toString();
+      if (this.commentId[index] == ID) {
+        //点两次
+        this.activeIndex.splice(this.activeIndex.indexOf(index), 1);
+        this.commentId[index] = "";
+      } else {
+        //点一次
+        //清除表单内容
+        this.subCommentList[index] = "";
+        //表情关掉
+        this.emojiIndex = [];
+        if (!this.activeIndex.includes(index)) {
+          this.activeIndex.push(index);
+        }
+        // 判断用户名是否存在，如果存在添加
+        if (name != "") {
+          this.subCommentList[index] = `@${name} `;
+        }
+        //存一下上一个回复列表对应点击的按钮
+        this.commentId[index] = ID;
+        this.commentFormState[index] = true;
+      }
+    },
     //发送
     sendSubCommentData(value) {
-      let index = this.activeIndex.indexOf(value);
-      this.activeIndex.splice(index, 1);
-      console.log(this.subCommentList[index]);
+      this.activeIndex.splice(this.activeIndex.indexOf(value), 1);
+      this.commentId[value] = "";
       this.emojiIndex = [];
     },
     //取消
     closeSubComment(value) {
-      let index = this.activeIndex.indexOf(value);
-      this.activeIndex.splice(index, 1);
+      this.activeIndex.splice(this.activeIndex.indexOf(value), 1);
+      this.commentId[value] = "";
       this.emojiIndex = [];
       this.subCommentList[value] = "";
     },
@@ -405,13 +404,20 @@ export default {
     appActiveBtn(index) {
       if (this.comments[index].liked == false) {
         ++this.comments[index].likes_count;
-        this.$refs.applaudClass[index].style.color = "#ea6f5a";
+        this.$refs.applaudClass[index].className = "fa fa-thumbs-up on";
+        this.$refs.textClass[index].className = "off";
+        //点赞发起axios请求
+
       } else {
         --this.comments[index].likes_count;
-        this.$refs.applaudClass[index].style.color = "#969696";
+        this.$refs.applaudClass[index].className = "fa fa-thumbs-o-up";
+        this.$refs.textClass[index].className = "";
+        //取消点赞发起axios请求
+        
       }
       this.comments[index].liked = !this.comments[index].liked;
     },
+
     //倒序函数
     by(name, minor) {
       return function(o, p) {
@@ -459,13 +465,13 @@ export default {
   directives: {
     // 对纯 DOM 元素进行底层操作
     focus: {
-      inserted: function(el,{value}) {
-          if(value){
+      inserted: function(el, { value }) {
+        if (value) {
           el.focus();
         }
       },
-      update: function(el,{value}) {
-          if(value){
+      update: function(el, { value }) {
+        if (value) {
           el.focus();
         }
       }
@@ -716,8 +722,20 @@ export default {
   cursor: pointer;
   font-size: 14px;
 }
+.note .post .comment-list .comment .tool-group a:nth-of-type(1):hover {
+  color: #ea6f5a !important;
+}
+.note .post .comment-list .comment .tool-group a:nth-of-type(1):hover span {
+  color: #000 !important;
+}
 .note .post .comment-list .comment .tool-group a:nth-of-type(2):hover {
   color: #333 !important;
+}
+.on {
+  color: #ea6f5a;
+}
+.off {
+  color: #000;
 }
 .note .post .comment-list .comment .tool-group a i {
   font-size: 18px;
