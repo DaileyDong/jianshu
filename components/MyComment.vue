@@ -6,7 +6,7 @@
         <nuxt-link to="/u/123" class="avatar">
         <img src="../assets/img/user.jpg" alt="">
         </nuxt-link>
-        <textarea placeholder="写下你的评论..." @focus="send=true" v-model="value"></textarea>
+        <textarea placeholder="写下你的评论..." v-focus='selectFocus' @focus="send=true"  v-model="value"></textarea>
           <transition name="fade">
           <div class="write-function-block clearfix" v-if="send">
           <div class="emoji-modal-wrap">
@@ -16,13 +16,13 @@
             <transition name="fade">
             <!--图标-->
            <div class="emoji-modal arrow-top" id="emoji-modal" v-if="showEmoji">
-             <vue-emoji @select="selectEmoji"></vue-emoji>
+             <vue-emoji @select="selectEmoji" ></vue-emoji>
            </div>
             </transition>
           </div>
           <div class="hint">Ctrl+Enter 发表</div>
           <a class="btn btn-send" >发送</a>
-          <a class="cancel" @click="send=false">取消</a>
+          <a class="cancel" @click="send=false;selectFocus=false">取消</a>
         </div>
           </transition>
       </form>
@@ -176,6 +176,7 @@ export default {
   data() {
     return {
       send: false,
+      selectFocus:false,
       showEmoji: false,
       value: "",
       subCommentList: [],
@@ -321,6 +322,7 @@ export default {
     selectEmoji(code) {
       this.showEmoji = false;
       this.value += code;
+      this.selectFocus=true;
     },
     //添加图标到文本框
     selectSubEmoji(code) {
@@ -457,8 +459,10 @@ export default {
   directives: {
     // 对纯 DOM 元素进行底层操作
     focus: {
-      inserted: function(el) {
+      inserted: function(el,{value}) {
+          if(value){
           el.focus();
+        }
       },
       update: function(el,{value}) {
           if(value){
