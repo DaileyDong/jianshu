@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="comment-list" id="comment-list">
-      <!--提交的留言表单-->
+      <!--提交的留言表单，一级回复-->
       <form class="new-comment">
         <nuxt-link to="/u/123" class="avatar">
         <img src="../assets/img/user.jpg" alt="">
@@ -106,17 +106,18 @@
                    </b-popover>
 
             
-                  <!--一级内容-->
+                  <!--二级内容-->
                   <div class="comment-wrap">
                    <p>{{comment.compiled_content}}</p>
                     <div class="tool-group">
                      <a @click="appActiveBtn(index)"><i ref="applaudClass" class="fa fa-thumbs-o-up"></i><span>{{comment.likes_count}}</span>人赞</a>
-                       <a @click="repeat_one(index)" ><i class="fa fa-comment-o"></i><span >回复</span></a> 
+                       <a @click="showSubCommentForm(index,'top','')" ><i class="fa fa-comment-o"></i><span >回复</span></a> 
                     </div>
                 </div>
                </div>
-               <!--二级-->
-               <div class="sub-comment-list" v-if="comment.children.length!=0">
+               <!--三级-->
+               <div class="sub-comment-list" >
+                 <div v-if="comment.children.length!=0">
                  <div v-for="(subComment,i) in comment.children" :key="i"  :id="subComment.id" class="sub-comment" >
                     <p>
                       <nuxt-link to="/u/123">
@@ -128,18 +129,20 @@
                     </p>
                     <div class="sub-tool-group">
                       <span>{{subComment.created_at | formateDate}}</span>
-                       <a ><i class="fa fa-comment-o"></i><span>回复</span></a>
+                       <a @click="showSubCommentForm(index,subComment.user.id,subComment.user.nickname)"><i class="fa fa-comment-o"></i><span>回复</span></a>
                    </div>
                  </div>
                  <div class="more-comment">
-                    <a @click="showSubCommentForm(index)"><i class="fa fa-pencil"></i>
+                    <a @click="showSubCommentForm(index,'bottom','')"><i class="fa fa-pencil"></i>
                     <span>添加新评论</span></a>
                 </div> 
+               </div>
+
               <!--评论框组件-->
               <div class="repeat" >
                     <transition :duration="200" name="fade">
                          <form class="new-comment" v-if="activeIndex.includes(index)">
-                       <textarea placeholder="写下你的评论..." v-model="subCommentList[index]"></textarea>
+                       <textarea v-focus="commentFormState[index]" @blur="commentFormState[index]=false" placeholder="写下你的评论..." v-model="subCommentList[index]" ref="textareaContent" ></textarea>
                          <div class="write-function-block clearfix">
                           <div class="emoji-modal-wrap">
                           <a class="emoji" @click="showSubEmoji(index)">
@@ -158,18 +161,16 @@
                                  </div>
                           </form>
                        </transition>
-                     </div>
-               </div>
               </div>
-
-  	</div>
-
+          </div>
+  	    </div>
+         </div>
     </div>
   </div>
 </template>
 <script>
 import vueEmoji from "~/components/VueEmoji";
-
+import Vue from "vue";
 export default {
   name: "myComment",
   data() {
@@ -177,7 +178,7 @@ export default {
       send: false,
       showEmoji: false,
       value: "",
-      subCommentList:[],
+      subCommentList: [],
       dynamicID: 0,
       formActive: { form_one: false },
       emojiPic: false,
@@ -200,20 +201,7 @@ export default {
             badge: null,
             slug: "fd1f8978b326"
           },
-          children: [
-            {
-              id: 19979746,
-              compiled_content:
-                "<a href='/users/fd1f8978b326' class='maleskine-author' style='color:#3194d0!important' target='_blank' data-user-slug='fd1f8978b326'>@呵呵哒哒呵1024</a> 谢谢，一起加油<img src='//static.jianshu.io/assets/emojis/blush.png' alt=':blush:' title=':blush:' class='emoji' width='20' height='20'>",
-              created_at: "2018-01-26T14:31:22.000+08:00",
-              parent_id: 19979655,
-              user_id: 3663279,
-              user: {
-                id: 3663279,
-                nickname: "清仁"
-              }
-            }
-          ]
+          children: []
         },
         {
           id: 20007534,
@@ -323,7 +311,10 @@ export default {
       ],
       sorts: ["按喜欢排序", "按时间正序", "按时间倒序"],
       activeIndex: [],
-      emojiIndex: []
+      emojiIndex: [],
+      commentId:[],
+      commentFormState: [],
+      nameArr:[]
     };
   },
   methods: {
@@ -331,18 +322,20 @@ export default {
       this.showEmoji = false;
       this.value += code;
     },
-   //添加图标到文本框
-    selectSubEmoji(code){
+    //添加图标到文本框
+    selectSubEmoji(code) {
       //当前下标
-      let index=this.emojiIndex[0];
+      let index = this.emojiIndex[0];
       //将表情所代表的code值放入表单中
-      if(this.subCommentList[index]==null){
-        this.subCommentList[index]='';
+      if (this.subCommentList[index] == null) {
+        this.subCommentList[index] = "";
       }
-      this.subCommentList[index]+=code;
+      this.subCommentList[index] += code;
       //关掉表情
-      let i = this.emojiIndex.indexOf(index);
-      this.emojiIndex.splice(i, 1);
+      this.emojiIndex = [];
+      //聚焦一下
+      let aa = this.activeIndex.indexOf(index);
+      this.$refs.textareaContent[aa].focus();
     },
     //排序功能
     is_sort(index) {
@@ -358,39 +351,44 @@ export default {
         this.comments.sort(this.yes("created_at"));
       }
     },
-    //回复打开框
-    repeat_one(value) {
-      if (this.activeIndex.includes(value)) {
-        let index = this.activeIndex.indexOf(value);
-        this.activeIndex.splice(index, 1);
-      } else {
-        this.activeIndex.push(value);
-      }
-      //清除文本框
-      this.subCommentList[value]='';
-      let i = this.emojiIndex.indexOf(value);
-      this.emojiIndex.splice(i, 1);
-    },
-
+    //回复
+    showSubCommentForm(index,id,name){
+               let ID = id.toString();
+               if(this.commentId[index] == ID){
+                   //点两次
+                   this.activeIndex.splice(this.activeIndex.indexOf(index),1);
+                   this.commentId[index] = '';
+               }else{
+                   //点一次
+                   //清除表单内容
+                   this.subCommentList[index] = '';
+                   //表情关掉
+                   this.emojiIndex = [];
+                   if(!this.activeIndex.includes(index)){
+                       this.activeIndex.push(index);
+                   }
+                   // 判断用户名是否存在，如果存在添加
+                   if(name != ''){
+                       this.subCommentList[index] = `@${name} `;
+                   }
+                   //存一下上一个回复列表对应点击的按钮
+                   this.commentId[index] = ID;
+                   this.commentFormState[index]=true;
+               }
+            },
     //发送
     sendSubCommentData(value) {
       let index = this.activeIndex.indexOf(value);
       this.activeIndex.splice(index, 1);
-      let i = this.emojiIndex.indexOf(value);
-      this.emojiIndex.splice(i, 1);
+      console.log(this.subCommentList[index]);
+      this.emojiIndex = [];
     },
     //取消
     closeSubComment(value) {
       let index = this.activeIndex.indexOf(value);
       this.activeIndex.splice(index, 1);
-      let i = this.emojiIndex.indexOf(value);
-      this.emojiIndex.splice(i, 1);
-      this.subCommentList[value]='';
-    },
-    //新评论
-    showSubCommentForm(value) {
-      this.repeat_one(value);
-      this.subCommentList[value]='';
+      this.emojiIndex = [];
+      this.subCommentList[value] = "";
     },
     //图标显示
     showSubEmoji(value) {
@@ -454,6 +452,20 @@ export default {
   mounted() {
     this.$refs.sortActive[0].className = "active";
     this.comments.sort(this.by("likes_count", this.by("user.nickname")));
+  },
+  //自定义指令
+  directives: {
+    // 对纯 DOM 元素进行底层操作
+    focus: {
+      inserted: function(el) {
+          el.focus();
+      },
+      update: function(el,{value}) {
+          if(value){
+          el.focus();
+        }
+      }
+    }
   },
   components: {
     vueEmoji
@@ -712,8 +724,8 @@ export default {
 }
 .note .post .comment-list .sub-comment-list {
   border-left: 2px solid #d9d9d9;
-  margin-top: 20px;
-  padding: 5px 0 5px 20px;
+  padding: 0;
+  padding-left: 20px;
 }
 .note .post .comment-list .sub-comment-list .sub-comment {
   padding-bottom: 15px;
@@ -734,6 +746,7 @@ export default {
 }
 .note .post .comment-list .sub-tool-group a {
   margin-left: 10px;
+  cursor: pointer;
 }
 .note .post .comment-list .sub-tool-group a:hover {
   color: #333 !important;
