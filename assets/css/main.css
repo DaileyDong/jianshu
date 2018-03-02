@@ -70,10 +70,26 @@ ul,ol,dl {
     .my-container {
         width: 750px!important;
     }
+    .person .main .main-top .info{
+        width: 280px;
+    }
+    .subject .main-top .it,
+    .subject .main-top .info{
+     width: 140px!important;
+    }
+    .person .main .main-top .simpleMail,
+    .person .main .main-top .btn-hollow,
+    .person .main .main-top .btn-activ{
+        margin-top: -90px!important;
+    }
 }
 @media (max-width:750px){
     body{
         overflow-x: hidden;
+    }
+    .new .main td{
+     display: block;
+     width:80vw;
     }
  }
 @media (max-width:785px){
