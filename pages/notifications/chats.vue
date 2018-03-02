@@ -129,15 +129,24 @@ export default {
 };
 </script>
 <style scoped>
+.notification{
+  position: relative;
+}
 .notification .aside {
-  margin-top: 30px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  margin-top: 86px;
   padding: 0 0 30px;
   max-width: 280px;
   overflow: auto;
 }
+
 .notification .main {
+  position: absolute;
+  right: 35px;
   margin-top: 30px;
-  padding-left: 30px;
+  max-width: 625px;
 }
 .notification .main .menu {
   margin-bottom: 20px;

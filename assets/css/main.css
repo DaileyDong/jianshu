@@ -82,6 +82,12 @@ ul,ol,dl {
     .person .main .main-top .btn-activ{
         margin-top: -90px!important;
     }
+    .notification .main{
+        width: 480px;
+    }
+    .notification .aside{
+        width: 220px;
+    }
 }
 @media (max-width:750px){
     body{
@@ -115,6 +121,9 @@ ul,ol,dl {
   }
   .setting .aside {
     position: fixed;
+    top: 0;
+    bottom: 0;
+    margin-top: 86px;
     padding: 0 0 30px;
     width: 280px;
     overflow: auto;
@@ -805,5 +814,3 @@ footer .about li a{
     }
 }
 
-
-/************************用户页面*******************/
