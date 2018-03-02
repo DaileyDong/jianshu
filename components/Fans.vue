@@ -51,12 +51,14 @@ export default {
     follow_over(value) {
       if (this.$refs["a" + value][0].innerHTML == "已关注") {
         this.$refs["a" + value][0].innerHTML = "取消关注";
+         this.$refs.followsProject[value].lastChild.className = "is_follow btnBgColor";
         this.$refs.followsProject[value].lastChild.firstChild.className ="fa fa-times";
       }
     },
     follow_out(value) {
       if (this.$refs["a" + value][0].innerHTML == "取消关注") {
         this.$refs["a" + value][0].innerHTML = "已关注";
+         this.$refs.followsProject[value].lastChild.className = "is_follow";
         this.$refs.followsProject[value].lastChild.firstChild.className ="fa fa-check";
       }
     },
@@ -136,6 +138,9 @@ button i {
 }
 .woman{
     color: #ea6f5a;
+}
+.btnBgColor{
+  background-color: #f8f8f8;
 }
 </style>
 

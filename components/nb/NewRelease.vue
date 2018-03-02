@@ -31,7 +31,9 @@
                               <span>
                                   <i class="fa fa-heart"></i> {{book.heart}}
                               </span>
-                            
+                                 <span class="quxiao" v-show="is_mark==index?true:false">
+                                 取消喜欢
+                               </span>
                           </div>
                       </div>
                   </li>
@@ -144,6 +146,12 @@ export default {
 }
 .nost-list .have-img > div {
   padding-right: 160px;
+}
+.quxiao{
+  cursor: pointer!important;
+}
+.quxiao:hover{
+  color: #787878!important;
 }
 </style>
 

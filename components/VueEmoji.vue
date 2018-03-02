@@ -63,6 +63,7 @@ export default {
   cursor: pointer;
   text-align: center;
   position: relative;
+  border-top: none!important;
 }
 
 .emojiTab li.active::after {
@@ -85,6 +86,7 @@ export default {
 .emojiTabContent li {
   font-size: 0;
   padding: 5px!important;
+  border-top: none!important;
 }
 
 .emojiTabContent li a {

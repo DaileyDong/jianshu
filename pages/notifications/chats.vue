@@ -195,7 +195,7 @@ border-top: 1px solid #f0f0f0;
  float: left;
  width: 48px;
  height: 48px;
- margin: 20px 10px 20px 20px;
+ margin: 20px 15px 20px 20px;
 }
 .notification .main .jianxin-list .name{
   position:absolute;

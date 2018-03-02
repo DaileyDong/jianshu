@@ -101,7 +101,8 @@ export default {
   width: 40px;
   height: 40px;
   display: inline-block;
-  margin-right: 5px;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 .notification .main .like-list .info{
   display: inline-block;

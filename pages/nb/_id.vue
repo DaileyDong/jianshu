@@ -109,12 +109,14 @@ export default {
     followOver1() {
       if (this.$refs.buttons.innerHTML == "已关注") {
         this.iconName = "fa fa-times";
+        this.buttonClass = "btn-active btnBgColor";
         this.$refs.buttons.innerHTML = "取消关注";
       }
     },
     followOut1() {
       if (this.$refs.buttons.innerHTML == "取消关注") {
         this.iconName = "fa fa-check";
+        this.buttonClass = "btn-active";
         this.$refs.buttons.innerHTML = "已关注";
       }
     },
@@ -189,6 +191,9 @@ export default {
 }
 .main-top button i {
   margin-right: 5px;
+}
+.btnBgColor{
+  background-color: #f8f8f8!important;
 }
 .trigger-menu {
   margin-top: 20px!important;
