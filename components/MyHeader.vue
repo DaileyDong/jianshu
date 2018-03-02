@@ -28,7 +28,7 @@
                     <li><nuxt-link to="/bookmarks">
                  <i class="fa fa-bookmark"></i>收藏的文章
                  </nuxt-link></li>
-                    <li><nuxt-link to="/u/liked_notes">
+                    <li><nuxt-link to="/users/123/liked_notes">
                  <i class="fa fa-heart"></i>喜欢的文章
                  </nuxt-link></li>
                     <li><nuxt-link to="/settings/basic">

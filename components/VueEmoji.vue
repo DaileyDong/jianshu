@@ -57,6 +57,7 @@ export default {
 .emojiTab li {
   float: left;
   width: 76px;
+  padding: 1.5px!important;
   font-size: 12px;
   line-height: 36px;
   cursor: pointer;
@@ -83,7 +84,7 @@ export default {
 
 .emojiTabContent li {
   font-size: 0;
-  padding: 5px;
+  padding: 5px!important;
 }
 
 .emojiTabContent li a {
