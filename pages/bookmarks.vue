@@ -7,40 +7,9 @@
               <img src="../static/bookmarks.png" alt="" class="tag-banner">
               <!--收藏列表-->
               <ul class="nost-list">
-                  <li>
-                      <div class="content">
-                          <div class="author">
-                              <nuxt-link to="/u/123" class="avatar">
-                              <img src="../assets/img/user.jpg" alt="">
-                              </nuxt-link>
-                              <div class="info">
-                                  <nuxt-link to="/u/123" class="nickname">草根女王的简爱</nuxt-link>
-                                   <span class="time">前天 15:31</span>
-                              </div>
-                          </div>
-                          <nuxt-link to="/p/123" class="title">
-                          《戏说网恋》
-                          </nuxt-link>
-                          <p class="abstract">
-                            打开视频两两望， 小心堕入千重浪。 烟花易冷江湖上， 人生大事需思量。 露水红颜祸水当， 风花雪月云烟往。 隐姓埋名尽伪装， 甜言蜜语耍计量。 情话连篇暖心房， 海誓山盟指月...
-                          </p>
-                          <div class="meta">
-                              <nuxt-link to="/p/123">
-                              <i class="fa fa-eye"></i> 84
-                              </nuxt-link>
-                              <nuxt-link to="/p/123">
-                              <i class="fa fa-comment"></i> 5
-                              </nuxt-link>
-                              <span>
-                                  <i class="fa fa-heart"></i> 30
-                              </span>
-                              <a href="javascript:void(0)" class="cancel">取消收藏</a>
-                          </div>
-                      </div>
-                  </li>
-                  <li class="have-img">
-                       <nuxt-link to="/p/123" class="wrap-img">
-                       <img src="../static/shou1.jpg" alt="" >
+                  <li :class="book.src==''?'':haveImg" v-for="(book,index) in bookmarks" :key="index" @mouseover="is_mark=index" @mouseout="is_mark=null">
+                       <nuxt-link to="/p/123" class="wrap-img" v-if="book.src==''?false:true">
+                       <img :src="book.src" alt="" >
                        </nuxt-link>
                     <div class="content">
                           <div class="author">
@@ -48,27 +17,27 @@
                               <img src="../assets/img/user.jpg" alt="">
                               </nuxt-link>
                               <div class="info">
-                                  <nuxt-link to="/u/123" class="nickname">关土</nuxt-link>
+                                  <nuxt-link to="/u/123" class="nickname">{{book.nickname}}</nuxt-link>
                                    <span class="time">02.07 03:00</span>
                               </div>
                           </div>
                           <nuxt-link to="/p/123" class="title">
-                          此景只应天上有
+                          {{book.title}}
                           </nuxt-link>
                           <p class="abstract">
-                           在岛上工作，每天上下班，坐车坐船至少要花去三个小时，好在“福利”好，每天路上总有惊喜。两周前的一天，我经历的一个惊喜，要是不分享一下，感觉就是犯罪。 那天清晨，坐渡轮上岛。 ...
+                           {{book.abstract}}
                           </p>
                           <div class="meta">
                               <nuxt-link to="/p/123">
-                              <i class="fa fa-eye"></i> 184
+                              <i class="fa fa-eye"></i> {{book.eye}}
                               </nuxt-link>
                               <nuxt-link to="/p/123">
-                              <i class="fa fa-comment"></i> 56
+                              <i class="fa fa-comment"></i> {{book.comments}}
                               </nuxt-link>
                               <span>
-                                  <i class="fa fa-heart"></i> 730
+                                  <i class="fa fa-heart"></i> {{book.heart}}
                               </span>
-                              <a href="javascript:void(0)" class="cancel">取消收藏</a>
+                              <a href="javascript:void(0)" v-show="is_mark==index?true:false" class="cancel">取消收藏</a>
                           </div>
                       </div>
                   </li>
@@ -82,6 +51,16 @@
 import MyHeader from "~/components/MyHeader";
 export default {
   name:'bookmarks',
+  data(){
+      return{
+          bookmarks:[
+              {src:'',nickname:'草根女王的简爱',title:'《戏说网恋》',abstract:' 打开视频两两望， 小心堕入千重浪。 烟花易冷江湖上， 人生大事需思量。 露水红颜祸水当， 风花雪月云烟往。 隐姓埋名尽伪装， 甜言蜜语耍计量。 情话连篇暖心房， 海誓山盟指月...',eye:55,comments:888,heart:410},
+              {src:require('../static/shou1.jpg'),nickname:'关土',title:'此景只应天上有',abstract:'在岛上工作，每天上下班，坐车坐船至少要花去三个小时，好在“福利”好，每天路上总有惊喜。两周前的一天，我经历的一个惊喜，要是不分享一下，感觉就是犯罪。 那天清晨，坐渡轮上岛。 ...',eye:65,comments:666,heart:10},
+          ],
+          haveImg:'have-img',
+          is_mark:null
+      }
+  },
   components:{
       MyHeader
   }
@@ -129,6 +108,9 @@ export default {
  font-weight: 700;
  display: inline-block;
 }
+.nost-list .content .title:hover{
+    text-decoration: underline!important;
+}
 .nost-list .abstract{
     margin-bottom: 8px;
     font-size: 13px;
@@ -142,6 +124,9 @@ export default {
 }
 .nost-list .meta a{
     margin-right: 10px;
+}
+.nost-list .meta a:hover{
+    color: #787878!important;
 }
 .nost-list .meta span{
     margin-right: 10px;
