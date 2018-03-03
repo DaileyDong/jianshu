@@ -110,6 +110,7 @@ export default {
       document.addEventListener('click',this.handClose);
    let dom1=document.querySelector('.aside ul li:nth-of-type(2)');
    dom1.className="asideActive";
+   
    document.querySelector('.nav-list li:nth-of-type(3) a').className="headerActive";
   },
   filters:{
