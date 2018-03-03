@@ -61,6 +61,32 @@ ul,ol,dl {
 .headerActive{
     color: #ea6f5a!important;
 }
+.sub .aside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    margin-top: 86px;
+    overflow: auto;
+    padding: 0;
+    max-width: 280px;
+    border-right: 1px solid #f0f0f0;
+  }
+  .sub .main {
+    margin-left: 30%;
+    margin-top: 30px;
+  }
+  .recommend .find-more {
+    width: 100%;
+    height: 40px;
+    margin: 30px auto 60px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 20px;
+    color: #fff !important;
+    background-color: #a5a5a5;
+    display: block;
+  }
 @media (min-width: 992px){
     .my-container {
         width: 960px!important;
@@ -77,17 +103,27 @@ ul,ol,dl {
     .subject .main-top .info{
      width: 140px!important;
     }
+    .sub .main-top .it,
+    .sub .main-top .info{
+     width: 140px!important;
+    }
+    .recommend .user-list .meta,.recommend .user-list .metas{
+        width: 280px!important;
+    }
     .person .main .main-top .simpleMail,
     .person .main .main-top .btn-hollow,
     .person .main .main-top .btn-activ{
         margin-top: -90px!important;
     }
-    .notification .main{
+    .notification .main,
+    .sub .main{
         width: 480px;
     }
-    .notification .aside{
-        width: 220px;
+    .notification .aside,
+    .sub .aside{
+    width: 220px;
     }
+    
 }
 @media (max-width:750px){
     body{

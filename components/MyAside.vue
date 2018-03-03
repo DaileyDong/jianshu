@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-        <li v-for="(nav,index) in navs" :key="index" ref="aside_ref">
+        <li v-for="(nav,index) in navs" :key="index">
             <nuxt-link :to="nav.url"><i :class="nav.icon"></i><span>{{nav.title}}</span></nuxt-link>
         </li>
     </ul>

@@ -1,5 +1,5 @@
 <template>
-  <div id="default-template">
+  <div id="default-template" class="wrap-outer">
     <nuxt/>
   </div>
 </template>
@@ -25,4 +25,9 @@ export default {
 
 }
 </script>
+<style>
+.wrap-outer {
+    margin-left: calc(100vw - 100%);
+}
+</style>
 
