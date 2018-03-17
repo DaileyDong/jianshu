@@ -325,7 +325,7 @@ export default {
       this.selectFocus = true;
     },
     //添加图标到文本框
-    selectSubEmoji(code) {
+    selectSubEmoji(code) { 
       //当前下标
       let index = this.emojiIndex[0];
       //将表情所代表的code值放入表单中

@@ -1,5 +1,5 @@
 <template>
-  <div id="default-template" class="wrap-outer">
+  <div id="default-template">
     <nuxt/>
   </div>
 </template>
@@ -23,11 +23,11 @@ import '../assets/css/animate.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 export default {
 
-}
+}  
 </script>
 <style>
-.wrap-outer {
-    margin-left: calc(100vw - 100%);
+html{
+  overflow-y: scroll;
 }
 </style>
 
